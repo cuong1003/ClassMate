@@ -1,231 +1,204 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%-- 
+    Document   : Login.jsp
+    Created on : Jun 25, 2025, 10:43:48 PM
+    Author     : fakey
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Welcome To ChatChit</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Đăng nhập - ClassMate</title>
         <style>
-            *, ::after, ::before {
-              box-sizing: border-box;
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
-
+            
             body {
-              background-color: #212121;
-              color: #fff;
-              font-family: monospace, serif;
-              letter-spacing: 0.05em;
+                font-family: Arial, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
-
-            h1 {
-              font-size: 23px;
+            
+            .login-container {
+                background: white;
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                min-width: 400px;
+                text-align: center;
             }
-
-            .form {
-              width: 300px;
-              padding: 64px 15px 24px;
-              margin: 0 auto;
+            
+            .back-btn {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                background: rgba(255,255,255,0.9);
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                text-decoration: none;
+                color: #333;
             }
-
-            .form .control {
-              margin: 0 0 24px;
+            
+            .back-btn:hover {
+                background: white;
             }
-
-            .form .control input {
-              width: 100%;
-              padding: 14px 16px;
-              border: 0;
-              background: transparent;
-              color: #fff;
-              font-family: monospace, serif;
-              letter-spacing: 0.05em;
-              font-size: 16px;
+            
+            .login-title {
+                font-size: 2rem;
+                color: #667eea;
+                margin-bottom: 10px;
             }
-
-            .form .control input:hover,
-            .form .control input:focus {
-              outline: none;
-              border: 0;
+            
+            .user-type {
+                background: #f8f9fa;
+                padding: 10px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                font-weight: bold;
             }
-
-            .form .btn {
-              width: 100%;
-              display: block;
-              padding: 14px 16px;
-              background: transparent;
-              outline: none;
-              border: 0;
-              color: #fff;
-              letter-spacing: 0.1em;
-              font-weight: bold;
-              font-family: monospace;
-              font-size: 16px;
+            
+            .teacher-type {
+                color: #28a745;
             }
-
-            .block-cube {
-              position: relative;
+            
+            .student-type {
+                color: #007bff;
             }
-
-            .block-cube .bg-top {
-              position: absolute;
-              height: 10px;
-              background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,9,121,1) 37%, rgba(0,212,255,1) 94%);
-              bottom: 100%;
-              left: 5px;
-              right: -5px;
-              transform: skew(-45deg, 0);
-              margin: 0;
+            
+            .form-group {
+                margin-bottom: 20px;
+                text-align: left;
             }
-
-            .block-cube .bg-top .bg-inner {
-              bottom: 0;
+            
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                color: #333;
+                font-weight: bold;
             }
-
-            .block-cube .bg {
-              position: absolute;
-              left: 0;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,9,121,1) 37%, rgba(0,212,255,1) 94%);
+            
+            .form-group input {
+                width: 100%;
+                padding: 12px;
+                border: 2px solid #e9ecef;
+                border-radius: 5px;
+                font-size: 1rem;
+                transition: border-color 0.3s;
             }
-
-            .block-cube .bg-right {
-              position: absolute;
-              background: rgba(0,212,255,1);
-              top: -5px;
-              z-index: 0;
-              bottom: 5px;
-              width: 10px;
-              left: 100%;
-              transform: skew(0, -45deg);
+            
+            .form-group input:focus {
+                outline: none;
+                border-color: #667eea;
             }
-
-            .block-cube .bg-right .bg-inner {
-              left: 0;
+            
+            .login-btn {
+                width: 100%;
+                padding: 12px;
+                background: #667eea;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1.1rem;
+                cursor: pointer;
+                transition: background 0.3s;
             }
-
-            .block-cube .bg .bg-inner {
-              transition: all 0.2s ease-in-out;
+            
+            .login-btn:hover {
+                background: #5a6fd8;
             }
-
-            .block-cube .bg-inner {
-              background: #212121;
-              position: absolute;
-              left: 2px;
-              top: 2px;
-              right: 2px;
-              bottom: 2px;
+            
+            .error-message {
+                background: #f8d7da;
+                color: #721c24;
+                padding: 10px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                border: 1px solid #f5c6cb;
             }
-
-            .block-cube .text {
-              position: relative;
-              z-index: 2;
+            
+            .register-link {
+                margin-top: 20px;
+                color: #666;
             }
-
-            .block-cube.block-input input {
-              position: relative;
-              z-index: 2;
+            
+            .register-link a {
+                color: #667eea;
+                text-decoration: none;
             }
-
-            .block-cube.block-input input:focus ~ .bg-right .bg-inner,
-            .block-cube.block-input input:focus ~ .bg-top .bg-inner,
-            .block-cube.block-input input:focus ~ .bg-inner .bg-inner {
-              top: 100%;
-              background: rgba(255, 255, 255, 0.5);
-            }
-
-            .block-cube.block-input .bg-top,
-            .block-cube.block-input .bg-right,
-            .block-cube.block-input .bg {
-              background: rgba(255, 255, 255, 0.5);
-              transition: background 0.2s ease-in-out;
-            }
-
-            .block-cube.block-input .bg-top .bg-inner,
-            .block-cube.block-input .bg-right .bg-inner {
-              transition: all 0.2s ease-in-out;
-            }
-
-            .block-cube.block-input:focus .bg-top,
-            .block-cube.block-input:focus .bg-right,
-            .block-cube.block-input:focus .bg,
-            .block-cube.block-input:hover .bg-top,
-            .block-cube.block-input:hover .bg-right,
-            .block-cube.block-input:hover .bg {
-              background: rgba(255, 255, 255, 0.8);
-            }
-
-            .block-cube.block-cube-hover:focus .bg .bg-inner,
-            .block-cube.block-cube-hover:hover .bg .bg-inner {
-              top: 100%;
-            }
-
-            .credits {
-              position: fixed;
-              left: 0;
-              bottom: 0;
-              padding: 15px 15px;
-              width: 100%;
-              z-index: 111;
-            }
-
-            .credits a {
-              opacity: 0.6;
-              color: #fff;
-              font-size: 11px;
-              text-decoration: none;
-            }
-
-            .credits a:hover {
-              opacity: 1;
+            
+            .register-link a:hover {
+                text-decoration: underline;
             }
         </style>
     </head>
     <body>
-
-        <%-- Hiển thị thông báo lỗi nếu có --%>
-        <%
-            String error = (String) request.getAttribute("fail");
-            if (error != null) {
-        %>
-            <script>
-                alert("username: <%= request.getAttribute("uu")%> khong ton tai");
-            </script>
-        <% } %>
-
-        <form class="form" autocomplete="off" action="${pageContext.request.contextPath}/Login" method="post">
-            <div class="control">
-                <h1>Sign In</h1>
+        <a href="${pageContext.request.contextPath}/" class="back-btn">← Quay lại</a>
+        
+        <div class="login-container">
+            <div class="login-title">🔑 Đăng Nhập</div>
+            
+            <%
+                String userType = request.getParameter("type");
+                if (userType != null) {
+                    if ("0".equals(userType)) {
+            %>
+                        <div class="user-type teacher-type">
+                            👨‍🏫 Đăng nhập dành cho Giáo viên
+                        </div>
+            <%
+                    } else if ("1".equals(userType)) {
+            %>
+                        <div class="user-type student-type">
+                            👨‍🎓 Đăng nhập dành cho Học sinh
+                        </div>
+            <%
+                    }
+                }
+            %>
+            
+            <%
+                String errorMessage = (String) request.getAttribute("fail");
+                if (errorMessage != null) {
+            %>
+                    <div class="error-message">
+                        ❌ <%= errorMessage %>
+                    </div>
+            <%
+                }
+            %>
+            
+            <form action="login" method="post">
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập:</label>
+                    <input type="text" id="username" name="username" required 
+                           value="<%= request.getAttribute("uu") != null ? request.getAttribute("uu") : "" %>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <% if (userType != null) { %>
+                    <input type="hidden" name="type" value="<%= userType %>">
+                <% } %>
+                
+                <button type="submit" class="login-btn">Đăng Nhập</button>
+            </form>
+            
+            <div class="register-link">
+                Chưa có tài khoản? 
+                <a href="${pageContext.request.contextPath}/register">Đăng ký ngay</a>
             </div>
-
-            <div class="control block-cube block-input">
-                <input name="username" type="text" placeholder="Username"
-                       value="<%= request.getParameter("username") != null ? request.getParameter("username") : "" %>" />
-                <div class="bg-top"><div class="bg-inner"></div></div>
-                <div class="bg-right"><div class="bg-inner"></div></div>
-                <div class="bg"><div class="bg-inner"></div></div>
-            </div>
-
-            <div class="control block-cube block-input">
-                <input name="password" type="password" placeholder="Password"/>
-                <div class="bg-top"><div class="bg-inner"></div></div>
-                <div class="bg-right"><div class="bg-inner"></div></div>
-                <div class="bg"><div class="bg-inner"></div></div>
-            </div>
-
-
-
-            <button class="btn block-cube block-cube-hover" type="submit">
-                <div class="bg-top"><div class="bg-inner"></div></div>
-                <div class="bg-right"><div class="bg-inner"></div></div>
-                <div class="bg"><div class="bg-inner"></div></div>
-                <div class="text">Log In</div>
-            </button>
-
-            <div class="credits">
-                <a href="https://github.com/cuong1003/PRJ301" target="_blank">???</a>
-            </div>
-        </form>
+        </div>
     </body>
 </html>

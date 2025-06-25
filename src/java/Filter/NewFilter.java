@@ -106,50 +106,30 @@ public class NewFilter implements Filter {
             String url = req.getRequestURI();
             HttpSession ses = req.getSession();
             
-            if (url.contains((req.getContextPath()+"/Login"))) {
+            // Cho phép truy cập các trang công khai không cần đăng nhập
+            if (url.contains(req.getContextPath()+"/login") || 
+                url.contains(req.getContextPath()+"/register") ||
+                url.endsWith("/index.html") ||
+                url.equals(req.getContextPath() + "/") ||
+                url.equals(req.getContextPath())) {
                 chain.doFilter(request, response);
             } else if (ses.getAttribute("us")!=null) {
                 Users us = (Users)ses.getAttribute("us");
-                if (us.getRoll()==0) {
-                    chain.doFilter(request,response);
-                } else if (us.getRoll()==1) {
-                    if (url.contains(req.getContextPath()+"/Admin/"))
-                        res.sendRedirect(req.getContextPath()+"/Vip01/Vip01");
+                if (us.getRoll()==0) {  // Giáo viên
+                    if (url.contains(req.getContextPath()+"/Student/"))
+                        res.sendRedirect(req.getContextPath()+"/teacherhome");
                     else
                         chain.doFilter(request, response);
-                } else if (us.getRoll()==2) {
-                    if (url.contains(req.getContextPath()+"/Admin/") ||
-                        url.contains(req.getContextPath()+"/Vip01/"))
-                        res.sendRedirect(req.getContextPath()+"/Vip02/Vip02");
-                    else
-                        chain.doFilter(request, response);
-                } else if (us.getRoll()==3) {
-                    if (url.contains(req.getContextPath()+"/Admin/") ||
-                        url.contains(req.getContextPath()+"/Vip01/") ||
-                        url.contains(req.getContextPath()+"/Vip02/"))
-                        res.sendRedirect(req.getContextPath()+"/Vip03/Vip03");
-                    else
-                        chain.doFilter(request, response);
-                } else if (us.getRoll()==4) {
-                    if (url.contains(req.getContextPath()+"/Admin/") ||
-                        url.contains(req.getContextPath()+"/Vip01/") ||
-                        url.contains(req.getContextPath()+"/Vip02/") ||
-                        url.contains(req.getContextPath()+"/Vip03/"))
-                        res.sendRedirect(req.getContextPath()+"/Vip04/Vip04");
-                    else
-                        chain.doFilter(request, response);
-                } else if (us.getRoll()==2005) {
-                    if (url.contains(req.getContextPath()+"/Admin/") ||
-                        url.contains(req.getContextPath()+"/Vip01/") ||
-                        url.contains(req.getContextPath()+"/Vip02/") ||
-                        url.contains(req.getContextPath()+"/Vip03/") ||
-                        url.contains(req.getContextPath()+"/Vip04/"))
-                        res.sendRedirect(req.getContextPath()+"/Default/DefaultUser");
+                } else if (us.getRoll()==1) {  // Học sinh
+                    if (url.contains(req.getContextPath()+"/Teacher/") || 
+                        url.contains(req.getContextPath()+"/teacherhome"))
+                        res.sendRedirect(req.getContextPath()+"/Student/StudentHome");
                     else
                         chain.doFilter(request, response);
                 } 
             } else {
-                res.sendRedirect(req.getContextPath()+"/Login");
+                // Chuyển về trang chủ thay vì login trực tiếp
+                res.sendRedirect(req.getContextPath() + "/");
             } 
     }
 
