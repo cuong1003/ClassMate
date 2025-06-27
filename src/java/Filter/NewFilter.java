@@ -107,9 +107,10 @@ public class NewFilter implements Filter {
             HttpSession ses = req.getSession();
             
             // Cho phép truy cập các trang công khai không cần đăng nhập
-            if (url.contains(req.getContextPath()+"/login") || 
-                url.contains(req.getContextPath()+"/register") ||
-                url.endsWith("/index.html") ||
+            if (url.contains("/login") || 
+                url.contains("/Login") ||
+                url.contains("/register") ||
+                url.contains("/Views/LandingPage/") ||
                 url.equals(req.getContextPath() + "/") ||
                 url.equals(req.getContextPath())) {
                 chain.doFilter(request, response);
@@ -117,7 +118,7 @@ public class NewFilter implements Filter {
                 Users us = (Users)ses.getAttribute("us");
                 if (us.getRoll()==0) {  // Giáo viên
                     if (url.contains(req.getContextPath()+"/Student/"))
-                        res.sendRedirect(req.getContextPath()+"/teacherhome");
+                        res.sendRedirect(req.getContextPath()+"/Teacher/TeacherHome");
                     else
                         chain.doFilter(request, response);
                 } else if (us.getRoll()==1) {  // Học sinh
@@ -128,7 +129,7 @@ public class NewFilter implements Filter {
                         chain.doFilter(request, response);
                 } 
             } else {
-                // Chuyển về trang chủ thay vì login trực tiếp
+                // Chuyển về trang chủ nếu chưa đăng nhập
                 res.sendRedirect(req.getContextPath() + "/");
             } 
     }

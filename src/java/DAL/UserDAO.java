@@ -10,8 +10,8 @@ import java.sql.ResultSet;
  */
 public class UserDAO {
     // TODO: Add CRUD methods for User
-    public Users checkLogin(String username, String password) {
-        String sql = "SELECT * FROM [User] WHERE username = ? AND [password] = ?";
+    public Users checkLogin(String username, String password, String role) {
+        String sql = "SELECT * FROM [User] WHERE username = ? AND password = ? AND role = ?";
 
         try {
             DBContext db = new DBContext();
@@ -19,6 +19,7 @@ public class UserDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, username);
             ps.setString(2, password);
+            ps.setString(3, role);
 
             ResultSet rs = ps.executeQuery();
 
@@ -39,7 +40,6 @@ public class UserDAO {
             conn.close();
 
         } catch (Exception e) {
-            System.out.println("Lỗi checkLogin: " + e.getMessage());
             e.printStackTrace();
         }
 

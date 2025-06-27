@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ClassMate - Hệ thống quản lý lớp học thông minh</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .header {
+                padding: 20px 50px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+            }
+
+            .logo {
+                color: white;
+                font-size: 28px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .logo::before {
+                content: "📚";
+                font-size: 32px;
+            }
+
+            .main-content {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 50px;
+            }
+
+            .hero-section {
+                text-align: center;
+                color: white;
+                max-width: 800px;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+                font-weight: bold;
+                margin-bottom: 20px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+                margin-bottom: 40px;
+                opacity: 0.9;
+                line-height: 1.6;
+            }
+
+            .action-buttons {
+                display: flex;
+                gap: 30px;
+                justify-content: center;
+                margin-top: 50px;
+            }
+
+            .btn {
+                padding: 15px 40px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                border: none;
+                border-radius: 50px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                display: inline-block;
+                min-width: 200px;
+            }
+
+            .btn-primary {
+                background: white;
+                color: #667eea;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+                background: #f8f9ff;
+            }
+
+            .btn-secondary {
+                background: transparent;
+                color: white;
+                border: 2px solid white;
+            }
+
+            .btn-secondary:hover {
+                background: white;
+                color: #667eea;
+                transform: translateY(-3px);
+            }
+
+            .features {
+                display: flex;
+                justify-content: center;
+                gap: 40px;
+                margin-top: 80px;
+                flex-wrap: wrap;
+            }
+
+            .feature-card {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                padding: 30px;
+                border-radius: 20px;
+                text-align: center;
+                max-width: 250px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .feature-icon {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+
+            .feature-title {
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+
+            .feature-description {
+                font-size: 0.9rem;
+                opacity: 0.8;
+                line-height: 1.5;
+            }
+
+            /* Modal Styles */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(5px);
+            }
+
+            .modal-content {
+                background: white;
+                margin: 10% auto;
+                padding: 40px;
+                border-radius: 20px;
+                width: 90%;
+                max-width: 500px;
+                text-align: center;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                animation: modalSlideIn 0.3s ease;
+            }
+
+            @keyframes modalSlideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .modal-title {
+                font-size: 1.8rem;
+                color: #333;
+                margin-bottom: 30px;
+                font-weight: 600;
+            }
+
+            .role-buttons {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .role-btn {
+                padding: 20px 30px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 15px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                min-width: 180px;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            .role-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            }
+
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                cursor: pointer;
+            }
+
+            .close:hover {
+                color: #333;
+            }
+
+            @media (max-width: 768px) {
+                .header {
+                    padding: 15px 20px;
+                }
+
+                .hero-title {
+                    font-size: 2.5rem;
+                }
+
+                .hero-subtitle {
+                    font-size: 1.1rem;
+                }
+
+                .action-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                .features {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                .role-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">ClassMate</div>
+        </div>
+
+        <div class="main-content">
+            <div class="hero-section">
+                <h1 class="hero-title">Chào mừng đến với ClassMate</h1>
+                <p class="hero-subtitle">
+                    Hệ thống quản lý lớp học thông minh, kết nối giáo viên và học sinh một cách hiệu quả nhất.
+                    Tạo bài tập, chat trực tuyến và theo dõi tiến độ học tập dễ dàng.
+                </p>
+
+                <div class="action-buttons">
+                    <a href="/classmate/Views/LandingPage/Register.jsp" class="btn btn-primary">
+                        🚀 Tham gia ngay
+                    </a>
+                    <button class="btn btn-secondary" onclick="openLoginModal()">
+                        🔐 Đăng nhập
+                    </button>
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">👩‍🏫</div>
+                        <div class="feature-title">Dành cho Giáo viên</div>
+                        <div class="feature-description">Tạo bài tập, quản lý lớp học và chấm điểm một cách dễ dàng</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <div class="feature-title">Dành cho Học sinh</div>
+                        <div class="feature-description">Làm bài tập, chat với thầy cô và theo dõi điểm số</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <div class="feature-title">Chat trực tuyến</div>
+                        <div class="feature-description">Giao tiếp trực tiếp giữa giáo viên và học sinh</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal đăng nhập -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+                <h2 class="modal-title">Chọn loại tài khoản</h2>
+                <div class="role-buttons">
+                    <a href="/classmate/Login?role=0" class="role-btn">
+                        👩‍🏫 Giáo viên
+                    </a>
+                    <a href="/classmate/Login?role=1" class="role-btn">
+                        🎓 Học sinh
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function openLoginModal() {
+                document.getElementById('loginModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLoginModal() {
+                document.getElementById('loginModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            // Đóng modal khi click bên ngoài
+            window.onclick = function(event) {
+                const modal = document.getElementById('loginModal');
+                if (event.target == modal) {
+                    closeLoginModal();
+                }
+            }
+
+            // Đóng modal bằng phím ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeLoginModal();
+                }
+            });
+        </script>
+    </body>
+</html>

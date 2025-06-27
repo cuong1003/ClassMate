@@ -24,7 +24,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
+        request.getRequestDispatcher("Views/LandingPage/Login.jsp").forward(request, response);
     } 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -33,26 +33,26 @@ public class LoginController extends HttpServlet {
           UserDAO dao = new UserDAO();
           String u = request.getParameter("username").trim();
           String p = request.getParameter("password").trim();
+          String r = request.getParameter("role");
           //debug xem co u p ko
           request.setAttribute("uu", u);
           
-          Users loginUser = dao.checkLogin(u, p);
+          Users loginUser = dao.checkLogin(u, p, r);
           if (loginUser != null) {
               HttpSession ses = request.getSession();
               ses.setAttribute("us",loginUser);
               
-              // Phân quyền chuyển hướng theo role
               if (loginUser.getRoll() == 0) {  // Giáo viên
-                  response.sendRedirect(request.getContextPath() + "/teacherhome");
+                  response.sendRedirect(request.getContextPath() + "/Teacher/TeacherHome");
               } else if (loginUser.getRoll() == 1) {  // Học sinh
                   response.sendRedirect(request.getContextPath() + "/Student/StudentHome");
               } else {
-                  // Role khác (nếu có)
+                  // chuyển lại về url mặc định (LandingPage)
                   response.sendRedirect(request.getContextPath() + "/");
               }
           } else {
               request.setAttribute("fail", "User or Password wrong!");
-              request.getRequestDispatcher("Views/Login.jsp").forward(request, response);
+              request.getRequestDispatcher("Views/LandingPage/Login.jsp").forward(request, response);
           }
     }
 
