@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <!-- Welcome file configuration -->
+    <servlet-mapping>
+        <servlet-name>StudentHome</servlet-name>
+        <url-pattern>/Student/StudentHome</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Views/LandingPage/LandingPage.html</welcome-file>
     </welcome-file-list>
@@ -16,6 +20,10 @@
         <servlet-name>StudentHome</servlet-name>
         <servlet-class>Controllers.Student.StudentHome</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>Controllers.RegisterController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -25,8 +33,8 @@
         <url-pattern>/Teacher/TeacherHome</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>StudentHome</servlet-name>
-        <url-pattern>/Student/StudentHome</url-pattern>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/Register</url-pattern>
     </servlet-mapping>
     <filter>
         <filter-name>NewFilter</filter-name>

@@ -12,6 +12,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Register</h1>
+        <form action="Register" method="post">
+            Username: <input type="text" name="username" /><br>
+            Password: <input type="password" name="password" /><br>
+            Fullname: <input type="text" name="fullname" /><br>
+            Email: <input type="email" name="email" /><br>
+            Loại tài khoản: <select name="role">
+                <option value="1">Học sinh</option>
+                <option value="0">Giáo viên</option>              
+            </select>
+            <br><input type="submit" value="Register" />
+        </form>
     </body>
 </html>

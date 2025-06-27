@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import DAL.UserDAO;
 
 /**
  * RegisterController for ClassMate system
@@ -14,12 +15,20 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // TODO: Show register form
+        request.getRequestDispatcher("Views/LandingPage/Register.jsp").forward(request, response);
     }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // TODO: Process registration
+        UserDAO dao = new UserDAO();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String fullname = request.getParameter("fullname");
+        String email = request.getParameter("email");
+        int role = Integer.parseInt(request.getParameter("role"));
+        
+        dao.register(username, password, fullname, email, role);
+        response.sendRedirect(request.getContextPath() + "/Login");
     }
 } 

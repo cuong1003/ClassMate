@@ -45,4 +45,22 @@ public class UserDAO {
 
         return null;//sai tk hoac mk
     }
+    public void register(String username, String password, String fullname, String email, int role) {
+        String sql = "INSERT INTO [User] (username, password, fullname, email, role) VALUES (?, ?, ?, ?, ?)";
+        try {
+            DBContext db = new DBContext();
+            Connection conn = db.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, fullname);
+            ps.setString(4, email);
+            ps.setInt(5, role);
+            ps.executeUpdate();
+            ps.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 } 
