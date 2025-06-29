@@ -8,8 +8,8 @@
             <file>file:/D:/Projects/ClassMate/src/java/Controllers/Student/StudentSubmitController.java</file>
             <file>file:/D:/Projects/ClassMate/src/java/Controllers/LoginController.java</file>
             <file>file:/D:/Projects/ClassMate/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Student/StudentHome.java</file>
             <file>file:/D:/Projects/ClassMate/web/Views/Shared/layout.jsp</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Student/StudentHome.java</file>
             <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherClassController.java</file>
             <file>file:/D:/Projects/ClassMate/src/java/Filter/NewFilter.java</file>
             <file>file:/D:/Projects/ClassMate/src/java/Models/Users.java</file>
@@ -20,6 +20,7 @@
             <file>file:/D:/Projects/ClassMate/web/Views/LandingPage/LandingPage.html</file>
             <file>file:/D:/Projects/ClassMate/web/debug.html</file>
             <file>file:/D:/Projects/ClassMate/src/java/Controllers/HomeController.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/RegisterController.java</file>
             <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherHome.java</file>
             <file>file:/D:/Projects/ClassMate/src/java/DAL/AssignmentDAO.java</file>
             <file>file:/D:/Projects/ClassMate/web/Views/LandingPage/Register.jsp</file>
