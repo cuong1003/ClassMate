@@ -24,6 +24,23 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        HttpSession ses = request.getSession();
+        
+        // check tồn tại sessionsession
+        String tempUsername = (String) ses.getAttribute("u");
+        Integer tempRole = (Integer) ses.getAttribute("r");  // dùng Integer để tránh null (int sẽ lỗi khi null)
+        
+        // Chỉ auto-fill khi có username và role từ register
+        if (tempUsername != null && tempRole != null) {
+            // set atriibute cho jsp de auto-fill
+            request.setAttribute("autoFillUsername", tempUsername);
+            request.setAttribute("autoFillRole", tempRole.toString());  // Convert to String for JSP
+            
+            // Kill session khi set atrribute xong
+            ses.removeAttribute("u");
+            ses.removeAttribute("r");
+        }
+        
         request.getRequestDispatcher("Views/LandingPage/Login.jsp").forward(request, response);
     } 
     @Override

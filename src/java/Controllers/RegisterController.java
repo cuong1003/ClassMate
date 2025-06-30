@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import DAL.UserDAO;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * RegisterController for ClassMate system
@@ -29,6 +30,9 @@ public class RegisterController extends HttpServlet {
         int role = Integer.parseInt(request.getParameter("role"));
         
         dao.register(username, password, fullname, email, role);
+        HttpSession ses = request.getSession();
+        ses.setAttribute("u", username);
+        ses.setAttribute("r", role);
         response.sendRedirect(request.getContextPath() + "/Login");
     }
 } 

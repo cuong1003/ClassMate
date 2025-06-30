@@ -14,9 +14,9 @@
     <body>
         <h1>Login to ClassMate</h1>
         <form action="Login" method="post">
-            Username: <input type="text" name="username" /><br>
+            Username: <input type="text" name="username" value="${autoFillUsername != null ? autoFillUsername : ''}" /><br>
             Password: <input type="password" name="password" /><br>
-            <input type="hidden" name="role" value="${param.role}" />
+            <input type="hidden" name="role" value="${autoFillRole != null ? autoFillRole : param.role}" />
             <input type="submit" value="Login" />
         </form>
     </body>
