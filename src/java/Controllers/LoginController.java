@@ -51,8 +51,8 @@ public class LoginController extends HttpServlet {
           String u = request.getParameter("username").trim();
           String p = request.getParameter("password").trim();
           String r = request.getParameter("role");
-          //debug xem co u p ko
-          request.setAttribute("uu", u);
+          //autill lại username
+          request.setAttribute("autoFillUsername", u);
           
           Users loginUser = dao.checkLogin(u, p, r);
           if (loginUser != null) {
