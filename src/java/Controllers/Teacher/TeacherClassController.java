@@ -20,18 +20,13 @@ public class TeacherClassController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO: Handle teacher class management
+        request.getRequestDispatcher("/Views/Teacher/ClassManagement.jsp").forward(request, response);
     }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ClassroomDAO classdao = new ClassroomDAO();
-        HttpSession ses = request.getSession();
-        Users us = (Users)ses.getAttribute("us");
-        String classname = request.getParameter("className").trim();
-        String classcode = request.getParameter("classCode").trim();
-        classdao.createClass(classname,classcode,us.getRole());
-        request.getRequestDispatcher("Views/LandingPage/Login.jsp").forward(request, response);
+        
         
     }
 } 

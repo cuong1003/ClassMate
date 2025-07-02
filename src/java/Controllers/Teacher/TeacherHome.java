@@ -4,12 +4,15 @@
  */
 package Controllers.Teacher;
 
+import DAL.ClassroomDAO;
+import Models.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -69,7 +72,13 @@ public class TeacherHome extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/Views/Teacher/home.jsp").forward(request, response);
+        ClassroomDAO classdao = new ClassroomDAO();
+        HttpSession ses = request.getSession();
+        Users us = (Users)ses.getAttribute("us");
+        String classname = request.getParameter("className").trim();
+        String classcode = request.getParameter("classCode").trim();
+        classdao.createClass(classname,classcode,us.getUserId());
+        request.getRequestDispatcher("/Teacher/TClassDashBoard").forward(request, response);
     }
 
     /**
