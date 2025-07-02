@@ -58,14 +58,21 @@ public class LoginController extends HttpServlet {
           if (loginUser != null) {
               HttpSession ses = request.getSession();
               ses.setAttribute("us",loginUser);
+              ses.setAttribute("userId", loginUser.getUserId());
               
-              if (loginUser.getRoll() == 0) {  // Giáo viên
-                  response.sendRedirect(request.getContextPath() + "/Teacher/TeacherHome");
-              } else if (loginUser.getRoll() == 1) {  // Học sinh
-                  response.sendRedirect(request.getContextPath() + "/Student/StudentHome");
-              } else {
-                  // chuyển lại về url mặc định (LandingPage)
-                  response.sendRedirect(request.getContextPath() + "/");
+              switch (loginUser.getRole()) {
+                  case 0:
+                      // Giáo viên
+                      response.sendRedirect(request.getContextPath() + "/Teacher/TeacherHome");
+                      break;
+                  case 1:
+                      // Học sinh
+                      response.sendRedirect(request.getContextPath() + "/Student/StudentHome");
+                      break;
+                  default:
+                      // chuyển lại về url mặc định (LandingPage)
+                      response.sendRedirect(request.getContextPath() + "/");
+                      break;
               }
           } else {
               request.setAttribute("fail", "User or Password wrong!");
