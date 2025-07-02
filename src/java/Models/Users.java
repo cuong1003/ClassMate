@@ -9,27 +9,31 @@ package Models;
  * @author c9
  */
 public class Users {
+    private int userId;
     private String user;
     private String pass;
     private String fullname;
     private String email;
-    private int roll;
+    private int role;
 
     public Users() {
     }
 
-    public Users(String user, String pass,String fullname ,String email, int roll) {
+    public Users(int userId, String user, String pass,String fullname ,String email, int role) {
+        this.userId = userId;
         this.user = user;
         this.pass = pass;
         this.email = email;
-        this.roll = roll;
+        this.role = role;
         this.fullname = fullname;
     }
-    
-    public Users(String user, String pass, int roll) {
-        this.user = user;
-        this.pass = pass;
-        this.roll = roll;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUser() {
@@ -48,6 +52,14 @@ public class Users {
         this.pass = pass;
     }
 
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -56,25 +68,19 @@ public class Users {
         this.email = email;
     }
 
-    public int getRoll() {
-        return roll;
+    public int getRole() {
+        return role;
     }
 
-    public void setRoll(int roll) {
-        this.roll = roll;
+    public void setRole(int role) {
+        this.role = role;
     }
-    
-    public String getFullname() {
-        return fullname;
-    }
-    
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }  
+
+     
 
     @Override
     public String toString() {
-        return "Users{" + "user=" + user + ", pass=" + pass + ", email=" + email + ", roll=" + roll + '}';
+        return "Users{" + "user=" + user + ", pass=" + pass + ", email=" + email + ", roll=" + role + '}';
     }
     
     

@@ -24,15 +24,18 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+                int userId = rs.getInt("id");
                 String user = rs.getString("username");
                 String pass = rs.getString("password");
-                int roll = rs.getInt("role");
+                String fullname = rs.getString("fullname");
+                String email = rs.getString("email");
+                int roleuser = rs.getInt("role");
 
                 rs.close();
                 ps.close();
                 conn.close();
 
-                return new Users(user, pass, roll);
+                return new Users(userId, user, pass, fullname , email, roleuser);
             }
 
             rs.close();

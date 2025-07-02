@@ -116,12 +116,12 @@ public class NewFilter implements Filter {
                 chain.doFilter(request, response);
             } else if (ses.getAttribute("us")!=null) {
                 Users us = (Users)ses.getAttribute("us");
-                if (us.getRoll()==0) {  // Giáo viên
+                if (us.getRole()==0) {  // Giáo viên
                     if (url.contains(req.getContextPath()+"/Student/"))
                         res.sendRedirect(req.getContextPath()+"/Teacher/TeacherHome");
                     else
                         chain.doFilter(request, response);
-                } else if (us.getRoll()==1) {  // Học sinh
+                } else if (us.getRole()==1) {  // Học sinh
                     if (url.contains(req.getContextPath()+"/Teacher/") || 
                         url.contains(req.getContextPath()+"/teacherhome"))
                         res.sendRedirect(req.getContextPath()+"/Student/StudentHome");

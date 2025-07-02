@@ -14,7 +14,7 @@
     <!-- Form tạo lớp học (ẩn ban đầu) -->
     <div id="createClassForm" style="display: none;">
         <h3>Tạo lớp học mới</h3>
-        <form action="createClass" method="post">
+        <form action="/classmate/Teacher/TClassDashBoard" method="post">
             <div>
                 <label for="className">Tên lớp học:</label>
                 <input type="text" id="className" name="className" required>
