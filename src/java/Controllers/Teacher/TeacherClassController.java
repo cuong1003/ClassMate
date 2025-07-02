@@ -2,6 +2,7 @@ package Controllers.Teacher;
 
 import DAL.ClassroomDAO;
 import Models.Classroom;
+import Models.Users;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,12 +26,11 @@ public class TeacherClassController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ClassroomDAO classdao = new ClassroomDAO();
-        Classroom c = new Classroom();
         HttpSession ses = request.getSession();
-        int userId = (int) ses.getAttribute("userId");
+        Users us = (Users)ses.getAttribute("us");
         String classname = request.getParameter("className").trim();
         String classcode = request.getParameter("classCode").trim();
-        classdao.createClass(classname,classcode,userId);
+        classdao.createClass(classname,classcode,us.getRole());
         request.getRequestDispatcher("Views/LandingPage/Login.jsp").forward(request, response);
         
     }
