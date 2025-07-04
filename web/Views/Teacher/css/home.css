@@ -1,0 +1,193 @@
+/* CSS Reset & Body Style */
+body {
+    margin: 0;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #3c4043;
+}
+
+/* Header Style */
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 24px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dadce0;
+}
+
+.header-title {
+    font-size: 22px;
+    color: #5f6368;
+}
+
+.icon-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #5f6368;
+    transition: background-color 0.2s;
+}
+
+.icon-button:hover {
+    background-color: #f1f3f4;
+}
+
+/* Class Grid Container */
+.class-grid-container {
+    display: grid;
+    padding: 24px;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* Individual Class Card */
+.class-card {
+    border-radius: 8px;
+    border: 1px solid #dadce0;
+    background-color: #ffffff;
+    overflow: hidden;
+    position: relative;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-header {
+    padding: 16px;
+    color: white;
+    height: 100px;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.card-subtitle {
+    font-size: 0.875rem;
+    margin-top: 4px;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+.card-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    position: absolute;
+    top: 75px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 500;
+    color: white;
+    border: 2px solid white;
+}
+
+/* Add Class Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Initially hidden */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+}
+
+.modal-content .form-group {
+    margin-bottom: 16px;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.modal-content input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-content .form-actions {
+    text-align: right;
+    margin-top: 24px;
+}
+
+.modal-content button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.modal-content button[type="submit"] {
+    background-color: #1a73e8;
+    color: white;
+}
+
+.modal-content button.cancel-btn {
+    background-color: #f1f3f4;
+    margin-right: 8px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .class-grid-container {
+        grid-template-columns: 1fr;
+    }
+}
