@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class ClassroomDAO {
     // TODO: Add CRUD methods for Classroom
+    // Tạo lớp học
     public void createClass(String className, String classCode, int ownerId) {
         String sql = "INSERT INTO [Classroom] (class_name, class_code, created_by) VALUES (?, ?, ?)";
         try {
@@ -28,6 +29,7 @@ public class ClassroomDAO {
             e.printStackTrace();
         }
     }
+    //Load danh sách lớp được thảo với id giáo viên.
     public List<Classroom> getClassByOwnerId(int ownerId) {
         //Note: Sẽ join thêm để lấy số lượng sinh viên có trong lớp đó của giáo viên.
         //Trạng thái: chưa làm.
@@ -54,6 +56,10 @@ public class ClassroomDAO {
         }
         return classList;
         
+        //Load danh sách thành viên trong lớp theo ccode.
+//        public void loadClassMembers(String classCode, int ) {
+//            
+//        }
 
     }
 } 
