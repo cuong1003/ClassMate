@@ -8,5 +8,6 @@
 <body>
     <h1>Class Management</h1>
     <!-- TODO: Add class management content -->
+    <a href="${pageContext.request.contextPath}/c/studentlist?ccode=${ccode}">Thành viên</a>
 </body>
 </html> 

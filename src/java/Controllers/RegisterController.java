@@ -33,6 +33,6 @@ public class RegisterController extends HttpServlet {
         HttpSession ses = request.getSession();
         ses.setAttribute("u", username);
         ses.setAttribute("r", role);
-        response.sendRedirect(request.getContextPath() + "/Login");
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 } 

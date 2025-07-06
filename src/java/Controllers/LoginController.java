@@ -62,11 +62,11 @@ public class LoginController extends HttpServlet {
               switch (loginUser.getRole()) {
                   case 0:
                       // Giáo viên
-                      response.sendRedirect(request.getContextPath() + "/Teacher/TeacherHome");
+                      response.sendRedirect(request.getContextPath() + "/t/teacherhome");
                       break;
                   case 1:
                       // Học sinh
-                      response.sendRedirect(request.getContextPath() + "/Student/StudentHome");
+                      response.sendRedirect(request.getContextPath() + "/s/studenthome");
                       break;
                   default:
                       // chuyển lại về url mặc định (LandingPage)

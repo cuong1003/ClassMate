@@ -18,7 +18,7 @@ public class TeacherHome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        // Lấy danh sách lớp của Giáo viên để hiển thị.
         ClassroomDAO classdao = new ClassroomDAO();
         HttpSession ses = request.getSession();
         Users us = (Users)ses.getAttribute("us");
@@ -30,13 +30,14 @@ public class TeacherHome extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Tạo lớp học 
         ClassroomDAO classdao = new ClassroomDAO();
         HttpSession ses = request.getSession();
         Users us = (Users)ses.getAttribute("us");
         String classname = request.getParameter("className").trim();
         String classcode = request.getParameter("classCode").trim();
         classdao.createClass(classname,classcode,us.getUserId());
-        request.getRequestDispatcher("/Teacher/TClassDashBoard").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/t/teacherhome");
     }
 
     @Override

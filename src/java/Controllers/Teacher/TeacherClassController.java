@@ -20,7 +20,10 @@ public class TeacherClassController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO: Handle teacher class management
-        request.getRequestDispatcher("/Views/Teacher/ClassManagement.jsp").forward(request, response);
+        //Hiển thị thông tin Bản tin của lớp,...
+        String ccode = request.getParameter("ccode");
+        request.setAttribute("ccode", ccode);
+        request.getRequestDispatcher("/Views/Teacher/classManagement.jsp").forward(request, response);
     }
     
     @Override
