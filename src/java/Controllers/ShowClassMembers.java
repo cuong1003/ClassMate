@@ -5,12 +5,16 @@
 
 package Controllers;
 
+import DAL.ClassroomDAO;
+import Models.ClassroomMember;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -53,7 +57,31 @@ public class ShowClassMembers extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+       String classCode = request.getParameter("ccode");
+
+ClassroomDAO dao = new ClassroomDAO();
+List<ClassroomMember> members = dao.loadClassMembers(classCode);
+
+// Lấy giáo viên
+String teacherName = dao.getTeacherFullnameByClassCode(classCode);
+
+// Lấy tên + email học sinh như trước...
+List<String> names = new ArrayList<>();
+List<String> emails = new ArrayList<>();
+
+for (ClassroomMember cm : members) {
+    names.add(dao.getFullnameByUserId(cm.getUser_id()));
+    emails.add(dao.getEmailByUserId(cm.getUser_id()));
+}
+
+request.setAttribute("members", members);
+request.setAttribute("names", names);
+request.setAttribute("emails", emails);
+request.setAttribute("teacherName", teacherName);  // gửi sang JSP
+request.setAttribute("ccode", classCode);
+request.setAttribute("membersCount", members.size());
+request.getRequestDispatcher("/Views/Shared/showClassMembers.jsp").forward(request, response);
+
     } 
 
     /** 

@@ -1,5 +1,6 @@
 package DAL;
 import Models.Classroom;
+import Models.ClassroomMember;
 import Models.Users;
 import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
@@ -55,11 +56,92 @@ public class ClassroomDAO {
             e.printStackTrace();
         }
         return classList;
-        
+    }
         //Load danh sách thành viên trong lớp theo ccode.
 //        public void loadClassMembers(String classCode, int ) {
 //            
 //        }
 
+public String getTeacherFullnameByClassCode(String classCode) {
+    String sql = "SELECT u.fullname " +
+                 "FROM Classroom c " +
+                 "JOIN [User] u ON c.created_by = u.id " +
+                 "WHERE c.class_code = ?";
+
+    try (Connection conn = new DBContext().getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, classCode);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getString("fullname");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+
+    return "Không tìm thấy giáo viên";
+}
+public String getEmailByUserId(int userId) {
+    String sql = "SELECT email FROM [User] WHERE id = ?";
+    try (Connection conn = new DBContext().getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, userId);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return rs.getString("email");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return "Không có email";
+}
+public String getFullnameByUserId(int userId) {
+    String sql = "SELECT fullname FROM [User] WHERE id = ?";
+    try (Connection conn = new DBContext().getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, userId);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            return rs.getString("fullname");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return "Không tìm thấy";
+}
+public List<ClassroomMember> loadClassMembers(String classCode) {
+    List<ClassroomMember> members = new ArrayList<>();
+    String sql = "SELECT cm.id, cm.user_id, cm.classroom_id, cm.joined_at " +
+                 "FROM ClassroomMember cm " +
+                 "JOIN Classroom c ON cm.classroom_id = c.id " +
+                 "WHERE c.class_code = ?";
+
+    try (Connection conn = new DBContext().getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        
+        ps.setString(1, classCode);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            ClassroomMember cm = new ClassroomMember();
+            cm.setId(rs.getInt("id"));
+            cm.setUser_id(rs.getInt("user_id"));
+            cm.setClassroom_id(rs.getInt("classroom_id"));
+            cm.setJoined_time(rs.getTimestamp("joined_at").toLocalDateTime());
+
+            members.add(cm);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return members;
+}
+
+    
 } 
