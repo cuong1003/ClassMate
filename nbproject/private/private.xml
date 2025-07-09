@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Projects/ClassMate/web/Views/Student/home.jsp</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/js/home.js</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Models/Classroom.java</file>
             <file>file:/D:/Projects/ClassMate/src/java/Controllers/LoginController.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/DAL/ClassroomDAO.java</file>
             <file>file:/D:/Projects/ClassMate/src/java/Controllers/RegisterController.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherHome.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/css/home.css</file>
+            <file>file:/D:/Projects/ClassMate/src/java/DAL/UserDAO.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/home.jsp</file>
         </group>
     </open-files>
 </project-private>
