@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Register</h1>
-        <form action="Register" method="post">
+        <form action="${pageContext.request.contextPath}/register" method="post">
             Username: <input type="text" name="username" /><br>
             Password: <input type="password" name="password" /><br>
             Fullname: <input type="text" name="fullname" /><br>
