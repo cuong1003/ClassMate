@@ -3,23 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/Models/ChatMessage.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/Controllers/Student/StudentClassController.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/Models/Assignment.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/Controllers/ShowClassMembers.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/DAL/ChatDAO.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/Controllers/Teacher/TeacherClassController.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/web/Views/Teacher/classManagement.jsp</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/web/Views/Shared/showClassMembers.jsp</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/web/Views/Teacher/home.jsp</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/Models/ClassroomMember.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/DAL/AssignmentDAO.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/DAL/ClassroomDAO.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/DAL/DBContext.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/DAL/UserDAO.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/DAL/SubmissionDAO.java</file>
-            <file>file:/C:/Users/bonto/Documents/NetBeansProjects/ClassMate/src/java/Controllers/Teacher/TeacherHome.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/js/home.js</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Models/Classroom.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/LoginController.java</file>
+            <file>file:/D:/Projects/ClassMate/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/classManagement.jsp</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherClassController.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/showClassAssignments.jsp</file>
+            <file>file:/D:/Projects/ClassMate/src/java/DAL/UserDAO.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/home.jsp</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Student/home.jsp</file>
+            <file>file:/D:/Projects/ClassMate/src/java/DAL/ClassroomDAO.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/RegisterController.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherHome.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/css/home.css</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/ShowClassAssignments.java</file>
         </group>
     </open-files>
 </project-private>
