@@ -13,15 +13,15 @@
     <%-- Sử dụng cấu trúc header giống hệt home.jsp --%>
     <header class="main-header">
         <h1 class="header-title">
-             <a href="#">Lớp học</a> &gt; <span>${ccode}</span>
+             <a href="${pageContext.request.contextPath}/t/teacherhome">Lớp học</a> &gt; <span>${ccode}</span>
         </h1>
     </header>
 
     <div class="main-container">
         <nav class="class-nav">
-            <a href="#">Bảng tin</a>
+            <a href="${pageContext.request.contextPath}/t/classcontroller?ccode=${ccode}">Bảng tin</a>
             <a href="#" class="active">Bài tập trên lớp</a>
-            <a href="#">Mọi người</a>
+            <a href="${pageContext.request.contextPath}/c/studentlist?ccode=${ccode}">Mọi người</a>
             <a href="#">Điểm</a>
         </nav>
 
