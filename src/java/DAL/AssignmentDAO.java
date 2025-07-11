@@ -17,17 +17,21 @@ public class AssignmentDAO {
             DBContext db = new DBContext();
             Connection conn = db.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, ccode);
+            if (ccode != null) {
+                ps.setString(1, ccode.trim());
+            } else {
+                ps.setString(1, "");
+            }
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int assignmentId = rs.getInt("assignment_id");
+                int assignmentId = rs.getInt("id");
                 int classId = rs.getInt("classroom_id");
                 String title = rs.getString("title");
-                String des = rs.getString("des");
+                String des = rs.getString("description");
                 int createdBy = rs.getInt("created_by");
                 Date createdAt = rs.getDate("created_at");
-                Date deadLine = rs.getDate("dead_line");
+                Date deadLine = rs.getDate("deadline");
                 assignments.add(new Assignment(assignmentId, classId, title, des, createdBy, createdAt, deadLine));
             }
             rs.close();
