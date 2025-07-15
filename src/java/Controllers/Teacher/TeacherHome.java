@@ -1,9 +1,11 @@
 
 package Controllers.Teacher;
 
+import Controllers.Utils.FileManager;
 import DAL.ClassroomDAO;
 import Models.Classroom;
 import Models.Users;
+import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -40,6 +42,16 @@ public class TeacherHome extends HttpServlet {
         int classid = classdao.getClassroomIdByCode(classcode); //lấy Id của lớp vừa tạo để tạo Folder lưu dữ liệu
         //Tạo folder lưu dữ liệu của lớp
         //...ToBeContinue....
+        FileManager file = new FileManager();
+        ServletContext context = getServletContext();     //Lấy context của project từ sẻvlet
+        boolean success = file.createClassroomFolders(context, classid);
+        if (success) {
+            ses.setAttribute("folderalert", "Tạo folder lớp học thành công");
+        } else {
+            ses.setAttribute("folderalert", "Lỗi tạo folder lớp học");
+        }
+        System.out.println(ses.getAttribute("folderalert")+"");
+        // chuyển hướng lại trang home nhằm method get load lại danh sách lớp.
         response.sendRedirect(request.getContextPath() + "/t/teacherhome");
     }
 

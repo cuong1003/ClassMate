@@ -1,36 +1,45 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Controllers.Utils;
 
-/**
- *
- * @author fakey
- */
+package Controllers.Utils;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import jakarta.servlet.ServletContext;
+
 public class FileManager {
-    // quản lí các phuowng thức về file/folder.
-    private static final String UPLOAD_ROOT = "web/uploads/classes/";
     
-    public static boolean createClassroomFolders(int classroomId) {
-        // Logic tạo folder classroom_[id]/assignments/ và students/
-        return true;
+    // method lấy đường dẫn đến thư mục của project 
+    // (tránh dùng đường dẫn tuyệt đói.)
+    public String getUploadBasePath(ServletContext context) {
+        return context.getRealPath("/uploads/classes/");
     }
     
-    public static boolean createStudentFolder(int classroomId, int studentId) {
-        // Logic tạo folder cho student khi join lớp
-        return true;
-    }
-    
-    public static String getClassroomPath(int classroomId) {
-        return UPLOAD_ROOT + "classroom_" + classroomId + "/";
-    }
-    
-    public static String getAssignmentPath(int classroomId) {
-        return getClassroomPath(classroomId) + "assignments/";
-    }
-    
-    public static String getStudentPath(int classroomId, int studentId) {
-        return getClassroomPath(classroomId) + "students/student_" + studentId + "/";
+    public boolean createClassroomFolders(ServletContext context, int classroomId) {
+        try {
+            String basePath = getUploadBasePath(context);
+            System.out.println("DEBUG:Base path = " + basePath);
+            
+            // *DuongDan*/web/uploads/classes/classroom_123/
+            String classroomPath = basePath + "classroom_" + classroomId;
+            
+            Path classPath = Paths.get(classroomPath); // Đổi string thành Path
+            Files.createDirectories(classPath); //Tạo folder lớp học
+            
+            // Tạo subfolder assignments
+            Path assignmentsPath = Paths.get(classroomPath + "/assignments");
+            Files.createDirectories(assignmentsPath);
+            
+            // Tạo subfolder students  
+            Path studentsPath = Paths.get(classroomPath + "/students");
+            Files.createDirectories(studentsPath);
+            
+            System.out.println("DEBUG:Đã tạo folder lớp: " + classroomId);
+            return true;
+            
+        } catch (Exception e) {
+            System.err.println("DEBUG:Lỗi tạo folder lớp: " + classroomId + ": " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 }
