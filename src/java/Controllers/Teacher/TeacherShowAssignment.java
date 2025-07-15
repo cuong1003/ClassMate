@@ -44,6 +44,7 @@ public class TeacherShowAssignment extends HttpServlet {
         String ccode = request.getParameter("ccode");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
+        String fileUrl = request.getParameter("fileUrl"); // Google Drive URL
         
         // Debug logging
         System.out.println("=== DEBUG CREATE ASSIGNMENT ===");
@@ -69,12 +70,11 @@ public class TeacherShowAssignment extends HttpServlet {
             }
         }
 
-        java.sql.Date sqlDeadline = null; // Khai báo là java.sql.Date
+        java.sql.Timestamp sqlDeadline = null; // Khai báo là java.sql.Timestamp
 
         if (utilDeadline != null) {
-            // Chuyển đổi từ java.util.Date sang java.sql.Date
-            // Lấy số mili giây từ java.util.Date và truyền vào constructor của java.sql.Date
-            sqlDeadline = new java.sql.Date(utilDeadline.getTime());
+            // Chuyển đổi từ java.util.Date sang java.sql.Timestamp để tương thích DATETIME
+            sqlDeadline = new java.sql.Timestamp(utilDeadline.getTime());
         }
 
 // Kiểm tra xem sqlDeadline có giá trị để tránh NullPointerException khi gọi DAO
@@ -84,7 +84,7 @@ public class TeacherShowAssignment extends HttpServlet {
                 System.out.println("sqlDeadline: " + sqlDeadline);
                 System.out.println("Attempting to insert assignment...");
                 
-                assDao.addAssignment(ccode, title, description, createdBy, sqlDeadline);
+                assDao.addAssignmentWithFile(ccode, title, description, createdBy, sqlDeadline, fileUrl);
                 
                 System.out.println("Assignment inserted successfully!");
                 response.sendRedirect(request.getContextPath() + "/t/assignmentlist?ccode=" + ccode);

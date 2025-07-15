@@ -14,10 +14,12 @@ public class Assignment {
     private int createdBy;
     private Date createdAt;
     private Date deadLine;
+    private String fileUrl; // Google Drive URL
 
     public Assignment() {
     }
 
+    // Constructor cũ - backward compatible
     public Assignment(int assignmentId, int classId, String title, String des, int createdBy, Date createdAt, Date deadLine) {
         this.assignmentId = assignmentId;
         this.classId = classId;
@@ -26,6 +28,19 @@ public class Assignment {
         this.createdBy = createdBy;
         this.createdAt = createdAt;
         this.deadLine = deadLine;
+        this.fileUrl = null; // Default null
+    }
+    
+    // Constructor mới - với Google Drive URL
+    public Assignment(int assignmentId, int classId, String title, String des, int createdBy, Date createdAt, Date deadLine, String fileUrl) {
+        this.assignmentId = assignmentId;
+        this.classId = classId;
+        this.title = title;
+        this.des = des;
+        this.createdBy = createdBy;
+        this.createdAt = createdAt;
+        this.deadLine = deadLine;
+        this.fileUrl = fileUrl;
     }
 
     public int getAssignmentId() {
@@ -84,9 +99,17 @@ public class Assignment {
         this.deadLine = deadLine;
     }
 
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
+
     @Override
     public String toString() {
-        return "Assignment{" + "assignmentId=" + assignmentId + ", classId=" + classId + ", title=" + title + ", des=" + des + ", createdBy=" + createdBy + ", createdAt=" + createdAt + ", deadLine=" + deadLine + '}';
+        return "Assignment{" + "assignmentId=" + assignmentId + ", classId=" + classId + ", title=" + title + ", des=" + des + ", createdBy=" + createdBy + ", createdAt=" + createdAt + ", deadLine=" + deadLine + ", fileUrl=" + fileUrl + '}';
     }
 
     

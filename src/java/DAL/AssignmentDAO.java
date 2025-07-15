@@ -44,13 +44,13 @@ public class AssignmentDAO {
         }
         return assignments;
     }
-    // Method cũ - giữ nguyên để backward compatible
-    public void addAssignment(String ccode, String title, String description, int createdBy, Date deadline) throws Exception {
+    // Method cũ - giữ nguyên để backward compatible  
+    public void addAssignment(String ccode, String title, String description, int createdBy, java.sql.Timestamp deadline) throws Exception {
         addAssignmentWithFile(ccode, title, description, createdBy, deadline, null);
     }
     
     // Method mới - hỗ trợ Google Drive URL
-    public void addAssignmentWithFile(String ccode, String title, String description, int createdBy, Date deadline, String fileUrl) throws Exception {
+    public void addAssignmentWithFile(String ccode, String title, String description, int createdBy, java.sql.Timestamp deadline, String fileUrl) throws Exception {
         //Lấy classroom_id từ class_code
         String getClassIdSql = "SELECT id FROM Classroom WHERE class_code = ?";
         int classroomId = -1;
@@ -83,8 +83,8 @@ public class AssignmentDAO {
             psInsert.setString(2, title);
             psInsert.setString(3, description);
             psInsert.setInt(4, createdBy);
-            psInsert.setDate(5, new java.sql.Date(System.currentTimeMillis())); // created_at = thời gian hiện tại
-            psInsert.setDate(6, deadline);  // deadline
+            psInsert.setTimestamp(5, new java.sql.Timestamp(System.currentTimeMillis())); // created_at = thời gian hiện tại
+            psInsert.setTimestamp(6, deadline);  // deadline
             psInsert.setString(7, fileUrl); // Google Drive URL (có thể null)
             
             psInsert.executeUpdate();

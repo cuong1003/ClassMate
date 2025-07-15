@@ -53,6 +53,12 @@
                             <div class="assignment-details">
                                 <a href="#" class="assignment-title">${item.title}</a>
                                 <p class="assignment-deadline">Hạn nộp: ${item.deadLine}</p>
+                                <c:if test="${not empty item.fileUrl}">
+                                    <p class="assignment-file">
+                                        <span class="material-icons" style="font-size: 14px;">link</span>
+                                        <a href="${item.fileUrl}" target="_blank" style="color: #1a73e8; text-decoration: none; font-size: 12px;">Xem tài liệu</a>
+                                    </p>
+                                </c:if>
                             </div>
                         </div>
                     </c:forEach>
@@ -83,6 +89,12 @@
                 <div class="form-group">
                     <label for="deadline">Hạn nộp:</label>
                     <input type="date" id="deadline" name="deadline" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fileUrl">Tài liệu Google Drive (tùy chọn):</label>
+                    <input type="url" id="fileUrl" name="fileUrl" placeholder="https://drive.google.com/...">
+                    <small style="font-size: 11px; color: #666;">Chia sẻ với quyền "Anyone with the link can view"</small>
                 </div>
                 
                 <div class="form-actions">
