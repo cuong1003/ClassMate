@@ -17,7 +17,7 @@ public class DBContext {
  /*DO NOT EDIT THE BELOW METHOD, YOU MUST USE ONLY THIS ONE FOR YOUR DATABASE CONNECTION*/
     public Connection getConnection() throws Exception {
         String url = "jdbc:sqlserver://" + serverName + ":" + portNumber
-                + ";databaseName=" + dbName;//+"; integratedSecurity=true";
+                + ";databaseName=" + dbName + ";encrypt=true;trustServerCertificate=true;characterEncoding=UTF-8";
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         return DriverManager.getConnection(url, userID, password);
 //        return DriverManager.getConnection(url);
@@ -29,7 +29,7 @@ public class DBContext {
     private final String dbName = "ClassMate";
     private final String portNumber = "1433";
     private final String userID = "sa";
-    private final String password = "10022005Hh";
+    private final String password = "sa";
 }
 
 class Using {

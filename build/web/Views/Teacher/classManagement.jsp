@@ -9,6 +9,6 @@
     <h1>Class Management</h1>
     <!-- TODO: Add class management content -->
     <a href="${pageContext.request.contextPath}/c/studentlist?ccode=${ccode}">Thành viên</a>
-    <a href="${pageContext.request.contextPath}/c/assignmentlist?ccode=${ccode}">Bài tập trên lớp</a>
+    <a href="${pageContext.request.contextPath}/t/assignmentlist?ccode=${ccode}">Bài tập trên lớp</a>
 </body>
 </html> 

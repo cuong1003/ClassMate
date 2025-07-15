@@ -17,6 +17,7 @@ public class ClassroomDAO {
 
     // TODO: Add CRUD methods for Classroom
     // Tạo lớp học
+    // Tạo lớp trả về ID để thực hiện một số cộng dụng khác... Tạo folder luu data của lớp theo ID,...
     public void createClass(String className, String classCode, int ownerId) {
         String sql = "INSERT INTO [Classroom] (class_name, class_code, created_by) VALUES (?, ?, ?)";
         try {
@@ -32,6 +33,32 @@ public class ClassroomDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    //get Id class by class code
+    public int getClassroomIdByCode(String classCode) {
+    String sql = "SELECT id FROM [Classroom] WHERE class_code = ?";
+    try {
+        DBContext db = new DBContext();
+        Connection conn = db.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, classCode);
+        ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()) {
+            int id = rs.getInt("id");
+            rs.close();
+            ps.close();
+            conn.close();
+            return id;
+        }
+        
+        rs.close();
+        ps.close();
+        conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    return -1;
     }
 
     //Load danh sách lớp được thảo với id giáo viên.

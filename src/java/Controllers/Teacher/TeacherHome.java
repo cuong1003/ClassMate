@@ -37,6 +37,9 @@ public class TeacherHome extends HttpServlet {
         String classname = request.getParameter("className").trim();
         String classcode = request.getParameter("classCode").trim();
         classdao.createClass(classname,classcode,us.getUserId());
+        int classid = classdao.getClassroomIdByCode(classcode); //lấy Id của lớp vừa tạo để tạo Folder lưu dữ liệu
+        //Tạo folder lưu dữ liệu của lớp
+        //...ToBeContinue....
         response.sendRedirect(request.getContextPath() + "/t/teacherhome");
     }
 
