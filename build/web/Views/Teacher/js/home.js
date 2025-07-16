@@ -35,4 +35,72 @@ document.addEventListener('DOMContentLoaded', function () {
             this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
         });
     }
+
+    // Toast notification functionality
+    function createToastContainer() {
+        let container = document.querySelector('.toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+        }
+        return container;
+    }
+
+    function showToast(message, type = 'info', duration = 5000) {
+        const container = createToastContainer();
+        
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+            ${message}
+            <button class="toast-close">&times;</button>
+        `;
+        
+        container.appendChild(toast);
+        
+        // Show toast with animation
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
+        
+        // Auto hide after duration
+        const autoHide = setTimeout(() => {
+            hideToast(toast);
+        }, duration);
+        
+        // Close button functionality
+        const closeBtn = toast.querySelector('.toast-close');
+        closeBtn.addEventListener('click', () => {
+            clearTimeout(autoHide);
+            hideToast(toast);
+        });
+    }
+
+    function hideToast(toast) {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.parentNode.removeChild(toast);
+            }
+        }, 300);
+    }
+
+    // Check for session alert and show toast
+    if (window.sessionAlert && window.sessionAlert.trim() !== '') {
+        // Determine toast type based on message content
+        let toastType = 'info';
+        if (window.sessionAlert.toLowerCase().includes('thành công') || window.sessionAlert.toLowerCase().includes('success')) {
+            toastType = 'success';
+        } else if (window.sessionAlert.toLowerCase().includes('lỗi') || window.sessionAlert.toLowerCase().includes('error')) {
+            toastType = 'error';
+        } else if (window.sessionAlert.toLowerCase().includes('cảnh báo') || window.sessionAlert.toLowerCase().includes('warning')) {
+            toastType = 'warning';
+        }
+        
+        showToast(window.sessionAlert, toastType);
+        
+        // Clear the global variable
+        window.sessionAlert = null;
+    }
 });

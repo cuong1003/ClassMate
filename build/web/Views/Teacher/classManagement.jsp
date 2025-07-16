@@ -16,26 +16,7 @@
 </head>
 <body>
     <a href="${pageContext.request.contextPath}/c/studentlist?ccode=${ccode}">Thành viên</a>
-    <h2>Lớp: ${ccode}</h2>
 
-    <!-- 🔵 FORM ĐĂNG BÀI -->
-    <div class="post-form">
-        <form method="post" action="${pageContext.request.contextPath}/t/classcontroller?ccode=${ccode}">
-
-            <textarea name="message" placeholder="Chia sẻ điều gì đó với lớp..."></textarea><br>
-            <button type="submit">Đăng bài</button>
-        </form>
-    </div>
-
-    <!--  DANH SÁCH BÀI ĐĂNG -->
-  <c:forEach var="chat" items="${chats}">
-    <c:if test="${not empty chat.message}">
-        <div style="margin-bottom: 10px;">
-            <b>${chat.sender}</b> <small>${chat.time}</small><br>
-            <span>${chat.message}</span>
-        </div>
-    </c:if>
-</c:forEach>
-
+    <a href="${pageContext.request.contextPath}/t/assignmentlist?ccode=${ccode}">Bài tập trên lớp</a>
 </body>
 </html>

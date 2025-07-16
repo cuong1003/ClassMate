@@ -5,7 +5,6 @@ import DAL.ClassroomDAO;
 import Models.Classroom;
 import Models.Users;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +22,11 @@ public class TeacherHome extends HttpServlet {
         HttpSession ses = request.getSession();
         Users us = (Users)ses.getAttribute("us");
         List<Classroom> danhsachlop = classdao.getClassByOwnerId(us.getUserId());
+        String teacherName = us.getFullname();
+        int teacherId = us.getUserId();
         request.setAttribute("danhsachlop", danhsachlop);
+        request.setAttribute("teacherName", teacherName);
+        request.setAttribute("teacherId", teacherId);
         request.getRequestDispatcher("/Views/Teacher/home.jsp").forward(request, response);
     }
     //DoPost
@@ -36,7 +39,6 @@ public class TeacherHome extends HttpServlet {
         Users us = (Users)ses.getAttribute("us");
         String classname = request.getParameter("className").trim();
         String classcode = request.getParameter("classCode").trim();
-        classdao.createClass(classname,classcode,us.getUserId());
         response.sendRedirect(request.getContextPath() + "/t/teacherhome");
     }
 
