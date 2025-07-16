@@ -193,27 +193,28 @@
         .announcements-section {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
         
         .announcement-card {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(60, 64, 67, 0.12);
-            border: 1px solid #e8eaed;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+            border: 1px solid #dadce0;
             overflow: hidden;
-            transition: box-shadow 0.2s ease;
+            transition: all 0.2s ease;
         }
         
         .announcement-card:hover {
-            box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+            box-shadow: 0 4px 12px rgba(60, 64, 67, 0.2);
+            transform: translateY(-1px);
         }
         
         .announcement-header {
             display: flex;
             align-items: center;
-            padding: 20px 24px 16px;
-            gap: 12px;
+            padding: 24px 24px 16px;
+            gap: 16px;
         }
         
         .announcement-avatar {
@@ -237,7 +238,7 @@
             font-size: 14px;
             font-weight: 500;
             color: #3c4043;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
         
         .announcement-time {
@@ -246,28 +247,31 @@
         }
         
         .announcement-content {
-            padding: 0 24px 20px;
+            padding: 0 24px 24px;
+            margin-left: 56px; /* Căn với nội dung bên dưới avatar */
         }
         
         .announcement-title {
             font-size: 16px;
             font-weight: 500;
             color: #3c4043;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             line-height: 1.4;
         }
         
         .announcement-description {
             font-size: 14px;
             color: #5f6368;
-            line-height: 1.5;
+            line-height: 1.6;
             white-space: pre-wrap;
         }
         
         .announcement-actions {
-            padding: 12px 24px;
-            border-top: 1px solid #f1f3f4;
-            background: #fafbfc;
+            padding: 16px 24px;
+            border-top: 1px solid #e8eaed;
+            background: #f8f9fa;
+            margin-left: 56px; /* Căn với nội dung */
+            margin-right: 0;
         }
         
         .comments-section {
@@ -277,6 +281,7 @@
             color: #1a73e8;
             font-size: 14px;
             cursor: pointer;
+            padding: 4px 0;
         }
         
         .comments-section:hover {
@@ -348,7 +353,7 @@
     <div class="nav-tabs">
         <a href="#" class="nav-tab active">Bảng tin</a>
         <a href="${pageContext.request.contextPath}/t/assignmentlist?ccode=${ccode}" class="nav-tab">Bài tập trên lớp</a>
-        <a href="${pageContext.request.contextPath}/c/studentlist?ccode=${ccode}" class="nav-tab">Mọi người</a>
+        <a href="${pageContext.request.contextPath}/t/studentlist?ccode=${ccode}" class="nav-tab">Mọi người</a>
     </div>
     
     <!-- Main Content -->

@@ -32,11 +32,7 @@ public class StudentHome extends HttpServlet {
         HttpSession ses = request.getSession();
         Users us = (Users)ses.getAttribute("us");
         List<Classroom> danhsachlop = classdao.getClassByUserId(us.getUserId());
-        String studentName = us.getFullname();
-        int studentId = us.getUserId();
         request.setAttribute("danhsachlop", danhsachlop);
-        request.setAttribute("studentName", studentName);
-        request.setAttribute("studentId", studentId);
         request.getRequestDispatcher("/Views/Student/home.jsp").forward(request, response);
     }
 
@@ -47,9 +43,9 @@ public class StudentHome extends HttpServlet {
         ClassroomDAO classdao = new ClassroomDAO();
         HttpSession ses = request.getSession();
         Users us = (Users)ses.getAttribute("us");
-        String classcode = request.getParameter("classCode").trim();
+        String ccode = request.getParameter("ccode").trim();
         try {
-            classdao.joinClassroom(us.getUserId(), classcode);
+            classdao.joinClassroom(us.getUserId(), ccode);
         } catch (Exception ex) {
             Logger.getLogger(StudentHome.class.getName()).log(Level.SEVERE, null, ex);
         }

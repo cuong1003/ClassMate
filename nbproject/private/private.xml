@@ -3,18 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/Controllers/Teacher/TeacherShowAssignment.java</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/web/Views/Shared/showClassMembers.jsp</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/Filter/NewFilter.java</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/Models/Assignment.java</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/web/WEB-INF/web.xml</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/DAL/AssignmentDAO.java</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/web/Views/Teacher/showClassAssignments.jsp</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/Models/Users.java</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/DAL/DBContext.java</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/Controllers/ChatController.java</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/Controllers/Teacher/TeacherClassController.java</file>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/Controllers/AssignmentController.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/js/home.js</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Models/Classroom.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/DAL/DBContext.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/LoginController.java</file>
+            <file>file:/D:/Projects/ClassMate/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Student/StudentHome.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherStudentList.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherClassController.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/showClassMembers.jsp</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Models/Users.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/DAL/UserDAO.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/home.jsp</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/RegisterController.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherHome.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/css/home.css</file>
+            <file>file:/D:/Projects/ClassMate/src/java/DAL/AssignmentDAO.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherAssignmentController.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/classManagement.jsp</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Controllers/Teacher/TeacherShowAssignment.java</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/createAssignment.jsp</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/showClassAssignments.jsp</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Student/home.jsp</file>
+            <file>file:/D:/Projects/ClassMate/web/Views/Teacher/gradeAssignment.jsp</file>
+            <file>file:/D:/Projects/ClassMate/src/java/Models/Assignment.java</file>
+            <file>file:/D:/Projects/ClassMate/src/java/DAL/ClassroomDAO.java</file>
         </group>
     </open-files>
 </project-private>

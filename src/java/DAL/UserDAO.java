@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  */
 public class UserDAO {
     // TODO: Add CRUD methods for User
+    //Check đăng nhập
     public Users checkLogin(String username, String password, String role) {
         String sql = "SELECT * FROM [User] WHERE username = ? AND password = ? AND role = ?";
 
@@ -51,6 +52,7 @@ public class UserDAO {
 
         return null;//sai tk hoac mk
     }
+    //Tạo tài khoản.
     public void register(String username, String password, String fullname, String email, int role) {
         String sql = "INSERT INTO [User] (username, password, fullname, email, role) VALUES (?, ?, ?, ?, ?)";
         try {
@@ -103,7 +105,7 @@ public class UserDAO {
             if (rs.next()) {
                 us = new Users();
                 us.setUserId(rs.getInt(1));
-                us.setFullname(rs.getNString(2));
+                us.setFullName(rs.getNString(2));
                 us.setEmail(rs.getString(3));
                 us.setRole(rs.getInt(4));
                 return us;

@@ -13,13 +13,45 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Views/Teacher/css/home.css">
 </head>
 <body>
-    <a href="${pageContext.request.contextPath}/UserInfoController?id=${teacherId}">${teacherName}</a>
-
     <!-- Header -->
     <header class="main-header">
         <h1 class="header-title">Lớp học</h1>
         <div class="header-right">
             <button id="open-add-class-modal" class="icon-button" title="Tạo hoặc tham gia lớp học">+</button>
+            <div class="user-menu">
+                <button class="menu-button" id="user-menu-button">⋮</button>
+                <div class="dropdown-menu" id="user-dropdown">
+                    <div class="user-info">
+                        <div class="user-info-header">
+                            <span class="user-icon">👤</span>
+                            <span class="user-info-title">Thông tin người dùng</span>
+                        </div>
+                        <div class="user-info-content">
+                            <div class="user-info-item">
+                                <span class="info-label">ID:</span>
+                                <span class="info-value">${sessionScope.us.getUserId()}</span>
+                            </div>
+                            <div class="user-info-item">
+                                <span class="info-label">Tên:</span>
+                                <span class="info-value">${sessionScope.us.getFullName()}</span>
+                            </div>
+                            <div class="user-info-item">
+                                <span class="info-label">Email:</span>
+                                <span class="info-value">${sessionScope.us.getEmail()}</span>
+                            </div>
+                            <div class="user-info-item">
+                                <span class="info-label">Vai trò:</span>
+                                <span class="info-value role-badge ${sessionScope.us.getRole() == 0 ? 'teacher' : 'student'}">${sessionScope.us.getRole() == 0 ? "Giáo viên" : "Học sinh"}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="${pageContext.request.contextPath}/exit" class="dropdown-item logout-item">
+                        <span class="logout-icon">🚪</span>
+                        Đăng xuất
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
 

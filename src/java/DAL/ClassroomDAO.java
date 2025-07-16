@@ -74,10 +74,6 @@ public class ClassroomDAO {
         return classList;
     }
         //Load danh sách thành viên trong lớp theo ccode.
-//        public void loadClassMembers(String classCode, int ) {
-//            
-//        }
-
 public String getTeacherFullnameByClassCode(String classCode) {
     String sql = "SELECT u.fullname " +
                  "FROM Classroom c " +

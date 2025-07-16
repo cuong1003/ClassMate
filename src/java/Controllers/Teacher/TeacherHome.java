@@ -22,11 +22,7 @@ public class TeacherHome extends HttpServlet {
         HttpSession ses = request.getSession();
         Users us = (Users)ses.getAttribute("us");
         List<Classroom> danhsachlop = classdao.getClassByOwnerId(us.getUserId());
-        String teacherName = us.getFullname();
-        int teacherId = us.getUserId();
         request.setAttribute("danhsachlop", danhsachlop);
-        request.setAttribute("teacherName", teacherName);
-        request.setAttribute("teacherId", teacherId);
         request.getRequestDispatcher("/Views/Teacher/home.jsp").forward(request, response);
     }
     //DoPost

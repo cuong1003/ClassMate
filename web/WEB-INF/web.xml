@@ -2,40 +2,32 @@
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <!-- Welcome file configuration -->
     <servlet>
-        <servlet-name>ShowClassMembers</servlet-name>
-        <servlet-class>Controllers.ShowClassMembers</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>TeacherShowAssignment</servlet-name>
         <servlet-class>Controllers.Teacher.TeacherShowAssignment</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UserInfoController</servlet-name>
-        <servlet-class>Controllers.UserInfoController</servlet-class>
+        <servlet-name>TeacherStudentList</servlet-name>
+        <servlet-class>Controllers.Teacher.TeacherStudentList</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UserUpdateController</servlet-name>
-        <servlet-class>Controllers.UserUpdateController</servlet-class>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>Controllers.LogoutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>StudentHome</servlet-name>
         <url-pattern>/s/studenthome</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ShowClassMembers</servlet-name>
-        <url-pattern>/c/studentlist</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>TeacherShowAssignment</servlet-name>
         <url-pattern>/t/assignmentlist</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UserInfoController</servlet-name>
-        <url-pattern>/UserInfoController</url-pattern>
+        <servlet-name>TeacherStudentList</servlet-name>
+        <url-pattern>/t/studentlist</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UserUpdateController</servlet-name>
-        <url-pattern>/UserUpdateController</url-pattern>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/exit</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Views/LandingPage/LandingPage.html</welcome-file>

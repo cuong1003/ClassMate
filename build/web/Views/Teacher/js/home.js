@@ -103,4 +103,22 @@ document.addEventListener('DOMContentLoaded', function () {
         // Clear the global variable
         window.sessionAlert = null;
     }
+
+    // User menu dropdown functionality
+    const userMenuButton = document.getElementById('user-menu-button');
+    const userDropdown = document.getElementById('user-dropdown');
+
+    if (userMenuButton && userDropdown) {
+        userMenuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.classList.remove('show');
+            }
+        });
+    }
 });

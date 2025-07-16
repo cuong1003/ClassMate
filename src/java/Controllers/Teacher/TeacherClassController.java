@@ -28,7 +28,7 @@ public class TeacherClassController extends HttpServlet {
         request.setAttribute("ccode", ccode);
         HttpSession ses = request.getSession();
         Users user = (Users) ses.getAttribute("us");
-        String createdBy = user.getFullname();
+        String createdBy = user.getFullName();
         List<Assignment> announcementList = AssignmentDAO.getAnnouncementsList(ccode);
         request.setAttribute("teacher", createdBy);
         request.setAttribute("announcementList", announcementList);
