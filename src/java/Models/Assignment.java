@@ -4,59 +4,79 @@ import java.util.Date;
 
 /**
  * Assignment model for ClassMate system
+ * Updated to support both assignments and announcements
  */
 public class Assignment {
-    // TODO: Add properties and methods
-    private int assignmentId;
-    private int classId;
-    private String title;
-    private String des;
-    private int createdBy;
-    private Date createdAt;
-    private Date deadLine;
-    private String fileUrl; // Google Drive URL
+    private int id;                    // id INT PRIMARY KEY
+    private int classroomId;           // classroom_id INT NOT NULL
+    private String title;              // title NVARCHAR(200) NOT NULL
+    private String description;        // description NVARCHAR(MAX)
+    private String type;               // type VARCHAR(20) NOT NULL
+    private String fileUrl;            // file_url VARCHAR(500)
+    private Date deadline;             // deadline DATETIME
+    private int createdBy;             // created_by INT NOT NULL
+    private Date createdAt;            // created_at DATETIME
 
     public Assignment() {
     }
 
-    // Constructor cũ - backward compatible
-    public Assignment(int assignmentId, int classId, String title, String des, int createdBy, Date createdAt, Date deadLine) {
-        this.assignmentId = assignmentId;
-        this.classId = classId;
+    // Constructor cho Assignment (Bài tập)
+    public Assignment(int id, int classroomId, String title, String description, 
+                     String fileUrl, Date deadline, int createdBy, Date createdAt) {
+        this.id = id;
+        this.classroomId = classroomId;
         this.title = title;
-        this.des = des;
+        this.description = description;
+        this.type = "assignment";
+        this.fileUrl = fileUrl;
+        this.deadline = deadline;
         this.createdBy = createdBy;
         this.createdAt = createdAt;
-        this.deadLine = deadLine;
-        this.fileUrl = null; // Default null
     }
     
-    // Constructor mới - với Google Drive URL
-    public Assignment(int assignmentId, int classId, String title, String des, int createdBy, Date createdAt, Date deadLine, String fileUrl) {
-        this.assignmentId = assignmentId;
-        this.classId = classId;
+    // Constructor cho Announcement (Thông báo!)
+    public Assignment(int id, int classroomId, String title, String description, 
+                     int createdBy, Date createdAt) {
+        this.id = id;
+        this.classroomId = classroomId;
         this.title = title;
-        this.des = des;
+        this.description = description;
+        this.type = "announcement";
+        this.fileUrl = null;
+        this.deadline = null;
         this.createdBy = createdBy;
         this.createdAt = createdAt;
-        this.deadLine = deadLine;
+    }
+    
+    // Constructor chính
+    public Assignment(int id, int classroomId, String title, String description, 
+                     String type, String fileUrl, Date deadline, int createdBy, Date createdAt) {
+        this.id = id;
+        this.classroomId = classroomId;
+        this.title = title;
+        this.description = description;
+        this.type = type;
         this.fileUrl = fileUrl;
+        this.deadline = deadline;
+        this.createdBy = createdBy;
+        this.createdAt = createdAt;
     }
 
-    public int getAssignmentId() {
-        return assignmentId;
+    // Getters and Setters
+    public int getId() {
+        return id;
     }
 
-    public void setAssignmentId(int assignmentId) {
-        this.assignmentId = assignmentId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getClassId() {
-        return classId;
+    public int getClassroomId() {
+        return classroomId;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClassroomId(int classroomId) {
+        this.classroomId = classroomId;
     }
 
     public String getTitle() {
@@ -67,12 +87,36 @@ public class Assignment {
         this.title = title;
     }
 
-    public String getDes() {
-        return des;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDes(String des) {
-        this.des = des;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
     }
 
     public int getCreatedBy() {
@@ -91,25 +135,36 @@ public class Assignment {
         this.createdAt = createdAt;
     }
 
-    public Date getDeadLine() {
-        return deadLine;
+    // Utility methods
+    public boolean isAssignment() {
+        return "assignment".equals(this.type);
     }
-
-    public void setDeadLine(Date deadLine) {
-        this.deadLine = deadLine;
+    
+    public boolean isAnnouncement() {
+        return "announcement".equals(this.type);
     }
-
-    public String getFileUrl() {
-        return fileUrl;
+    
+    public boolean hasDeadline() {
+        return this.deadline != null;
     }
-
-    public void setFileUrl(String fileUrl) {
-        this.fileUrl = fileUrl;
+    
+    public boolean hasFileUrl() {
+        return this.fileUrl != null && !this.fileUrl.trim().isEmpty();
     }
 
     @Override
     public String toString() {
-        return "Assignment{" + "assignmentId=" + assignmentId + ", classId=" + classId + ", title=" + title + ", des=" + des + ", createdBy=" + createdBy + ", createdAt=" + createdAt + ", deadLine=" + deadLine + ", fileUrl=" + fileUrl + '}';
+        return "Assignment{" + 
+               "id=" + id + 
+               ", classroomId=" + classroomId + 
+               ", title='" + title + '\'' + 
+               ", description='" + description + '\'' + 
+               ", type='" + type + '\'' + 
+               ", fileUrl='" + fileUrl + '\'' + 
+               ", deadline=" + deadline + 
+               ", createdBy=" + createdBy + 
+               ", createdAt=" + createdAt + 
+               '}';
     }
 
     

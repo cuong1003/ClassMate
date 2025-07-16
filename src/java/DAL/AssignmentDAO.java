@@ -9,145 +9,38 @@ import java.util.List;
  */
 public class AssignmentDAO {
     // TODO: Add CRUD methods for Assignment
-    // Lấy danh sách bài tập bằng classcode 
-    public List<Assignment> getAssignByCcode(String ccode) throws Exception {
-        List<Assignment> assignments = new ArrayList<>();
-        //Order by id desc để hiển thị bài tập mới nhất ở đầu.
-        String sql = "SELECT a.* FROM Assignment AS a INNER JOIN Classroom AS c ON a .classroom_id = c.id WHERE c .class_code =  ? ORDER BY a.id DESC";
-        try {
-            DBContext db = new DBContext();
-            Connection conn = db.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            if (ccode != null) {
-                ps.setString(1, ccode.trim());
-            } else {
-                ps.setString(1, "");
-            }
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int assignmentId = rs.getInt("id");
-                int classId = rs.getInt("classroom_id");
-                String title = rs.getString("title");
-                String des = rs.getString("description");
-                int createdBy = rs.getInt("created_by");
-                Date createdAt = rs.getDate("created_at");
-                Date deadLine = rs.getDate("deadline");
-                String fileUrl = rs.getString("file_url"); // Lấy Google Drive URL
-                assignments.add(new Assignment(assignmentId, classId, title, des, createdBy, createdAt, deadLine, fileUrl));
-            }
-            rs.close();
-            ps.close();
-            conn.close();   
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return assignments;
-    }
-    // Method cũ - giữ nguyên để backward compatible  
-    public void addAssignment(String ccode, String title, String description, int createdBy, java.sql.Timestamp deadline) throws Exception {
-        addAssignmentWithFile(ccode, title, description, createdBy, deadline, null);
-    }
     
-    // Method mới - hỗ trợ Google Drive URL
-    public void addAssignmentWithFile(String ccode, String title, String description, int createdBy, java.sql.Timestamp deadline, String fileUrl) throws Exception {
-        //Lấy classroom_id từ class_code
-        String getClassIdSql = "SELECT id FROM Classroom WHERE class_code = ?";
-        int classroomId = -1;
-        
-        try {
-            DBContext db = new DBContext();
-            Connection conn = db.getConnection();
-            
-            //Lấy classroom_id
-            PreparedStatement psGetId = conn.prepareStatement(getClassIdSql);
-            psGetId.setString(1, ccode);
-            ResultSet rs = psGetId.executeQuery();
-            
-            if (rs.next()) {
-                classroomId = rs.getInt("id");
-            } else {
-                rs.close();
-                psGetId.close();
-                conn.close();
-                throw new Exception("Không tìm thấy lớp học với mã: " + ccode);
-            }
-            
-            rs.close();
-            psGetId.close();
-            
-            //Insert bài tập
-            String insertSql = "INSERT INTO Assignment (classroom_id, title, description, created_by, created_at, deadline, file_url) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement psInsert = conn.prepareStatement(insertSql);
-            psInsert.setInt(1, classroomId);  // Sử dụng classroom_id (int)
-            psInsert.setString(2, title);
-            psInsert.setString(3, description);
-            psInsert.setInt(4, createdBy);
-            psInsert.setTimestamp(5, new java.sql.Timestamp(System.currentTimeMillis())); // created_at = thời gian hiện tại
-            psInsert.setTimestamp(6, deadline);  // deadline
-            psInsert.setString(7, fileUrl); //Drive URL (có thể null)
-            
-            psInsert.executeUpdate();
-            psInsert.close();
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new Exception("Lỗi khi thêm bài tập: " + e.getMessage());
-        }
-    }
-    
-    // Method lấy bài tập theo ID
-    public Assignment getAssignmentById(int assignmentId) throws Exception {
-        String sql = "SELECT * FROM Assignment WHERE id = ?";
-        try {
-            DBContext db = new DBContext();
-            Connection conn = db.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, assignmentId);
-            
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                int classId = rs.getInt("classroom_id");
-                String title = rs.getString("title");
-                String description = rs.getString("description");
-                int createdBy = rs.getInt("created_by");
-                Date createdAt = rs.getDate("created_at");
-                Date deadline = rs.getDate("deadline");
-                String fileUrl = rs.getString("file_url");
-                
-                rs.close();
-                ps.close();
-                conn.close();
-                
-                return new Assignment(assignmentId, classId, title, description, createdBy, createdAt, deadline, fileUrl);
-            }
-            
-            rs.close();
-            ps.close();
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new Exception("Lỗi khi lấy bài tập: " + e.getMessage());
-        }
-        return null;
-    }
-    
-    // Method cập nhật Google Drive URL cho bài tập đã có
-    public void updateAssignmentFileUrl(int assignmentId, String fileUrl) throws Exception {
-        String sql = "UPDATE Assignment SET file_url = ? WHERE id = ?";
-        try {
-            DBContext db = new DBContext();
-            Connection conn = db.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, fileUrl);
-            ps.setInt(2, assignmentId);
-            
+    // Tạo bài tập (Assignment)
+    public static boolean createAssignment(int classroomId, String title, String description, int createdBy, java.sql.Timestamp deadline, String fileUrl) {
+        String sql = "INSERT INTO Assignment (classroom_id, title, description, type, file_url, deadline, created_by) VALUES (?, ?, ?, 'assignment', ?, ?, ?)";
+        try (Connection conn = new DBContext().getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, classroomId);
+            ps.setString(2, title);
+            ps.setString(3, description);
+            ps.setString(4, fileUrl);
+            ps.setTimestamp(5, deadline);
+            ps.setInt(6, createdBy);
             ps.executeUpdate();
-            ps.close();
-            conn.close();
-        } catch (SQLException e) {
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
-            throw new Exception("Lỗi khi cập nhật file URL: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    // Tạo thông báo (Announcement)
+    public static boolean createAnnouncement(int classroomId, String title, String description, int createdBy) {
+        String sql = "INSERT INTO Assignment (classroom_id, title, description, type, created_by) VALUES (?, ?, ?, 'announcement', ?)";
+        try (Connection conn = new DBContext().getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, classroomId);
+            ps.setString(2, title);
+            ps.setString(3, description);
+            ps.setInt(4, createdBy);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 } 
