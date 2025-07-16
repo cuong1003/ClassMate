@@ -33,8 +33,10 @@ public class StudentHome extends HttpServlet {
         Users us = (Users)ses.getAttribute("us");
         List<Classroom> danhsachlop = classdao.getClassByUserId(us.getUserId());
         String studentName = us.getFullname();
+        int studentId = us.getUserId();
         request.setAttribute("danhsachlop", danhsachlop);
         request.setAttribute("studentName", studentName);
+        request.setAttribute("studentId", studentId);
         request.getRequestDispatcher("/Views/Student/home.jsp").forward(request, response);
     }
 

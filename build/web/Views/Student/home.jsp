@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-    <p>Xin chào ${studentName}</p>
+    <a href="${pageContext.request.contextPath}/UserInfoController?id=${studentId}">${studentName}</a>
     
     <h1>Lớp Học</h1>
     

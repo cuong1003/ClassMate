@@ -75,7 +75,12 @@ public class LoginController extends HttpServlet {
               }
           } else {
               request.setAttribute("fail", "User or Password wrong!");
-              request.getRequestDispatcher("Views/LandingPage/Login.jsp").forward(request, response);
+              if("0".equals(r)){
+                  response.sendRedirect("Views/LandingPage/Login.jsp?role=0");
+              }
+              else if("1".equals(r)){
+                  response.sendRedirect("Views/LandingPage/Login.jsp?role=1");
+              }
           }
     }
 

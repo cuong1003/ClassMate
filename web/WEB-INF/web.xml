@@ -9,6 +9,14 @@
         <servlet-name>TeacherShowAssignment</servlet-name>
         <servlet-class>Controllers.Teacher.TeacherShowAssignment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserInfoController</servlet-name>
+        <servlet-class>Controllers.UserInfoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserUpdateController</servlet-name>
+        <servlet-class>Controllers.UserUpdateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>StudentHome</servlet-name>
         <url-pattern>/s/studenthome</url-pattern>
@@ -20,6 +28,14 @@
     <servlet-mapping>
         <servlet-name>TeacherShowAssignment</servlet-name>
         <url-pattern>/t/assignmentlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInfoController</servlet-name>
+        <url-pattern>/UserInfoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserUpdateController</servlet-name>
+        <url-pattern>/UserUpdateController</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Views/LandingPage/LandingPage.html</welcome-file>
