@@ -76,7 +76,7 @@ public class AssignmentDAO {
             rs.close();
             psGetId.close();
             
-            //Insert bài tập với Google Drive URL
+            //Insert bài tập
             String insertSql = "INSERT INTO Assignment (classroom_id, title, description, created_by, created_at, deadline, file_url) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement psInsert = conn.prepareStatement(insertSql);
             psInsert.setInt(1, classroomId);  // Sử dụng classroom_id (int)
@@ -85,7 +85,7 @@ public class AssignmentDAO {
             psInsert.setInt(4, createdBy);
             psInsert.setTimestamp(5, new java.sql.Timestamp(System.currentTimeMillis())); // created_at = thời gian hiện tại
             psInsert.setTimestamp(6, deadline);  // deadline
-            psInsert.setString(7, fileUrl); // Google Drive URL (có thể null)
+            psInsert.setString(7, fileUrl); //Drive URL (có thể null)
             
             psInsert.executeUpdate();
             psInsert.close();
@@ -96,7 +96,7 @@ public class AssignmentDAO {
         }
     }
     
-    // Method lấy bài tập theo ID (để xem chi tiết)
+    // Method lấy bài tập theo ID
     public Assignment getAssignmentById(int assignmentId) throws Exception {
         String sql = "SELECT * FROM Assignment WHERE id = ?";
         try {
