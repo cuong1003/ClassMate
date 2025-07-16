@@ -84,4 +84,12 @@
         <filter-name>NewFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <servlet>
+        <servlet-name>StudentClassController</servlet-name>
+        <servlet-class>Controllers.Student.StudentClassController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentClassController</servlet-name>
+        <url-pattern>/s/classcontroller</url-pattern>
+    </servlet-mapping>
 </web-app>

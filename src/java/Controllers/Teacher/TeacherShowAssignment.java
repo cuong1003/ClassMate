@@ -27,8 +27,8 @@ public class TeacherShowAssignment extends HttpServlet {
         try {
             String ccode = request.getParameter("ccode");
             AssignmentDAO assDao = new AssignmentDAO();
-            List<Assignment> ass = assDao.getAssignByCcode(ccode);
-            request.setAttribute("assignments", ass);
+//            List<Assignment> ass = assDao.getAssignByCcode(ccode);
+//            request.setAttribute("assignments", ass);
             request.setAttribute("ccode", ccode); // Thêm dòng này để truyền ccode sang JSP
             request.getRequestDispatcher("/Views/Teacher/showClassAssignments.jsp").forward(request, response);
             //processRequest(request, response);
