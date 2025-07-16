@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Views/Teacher/css/home.css">
 </head>
 <body>
+    <a href="${pageContext.request.contextPath}/UserInfoController?id=${teacherId}">${teacherName}</a>
 
     <!-- Header -->
     <header class="main-header">

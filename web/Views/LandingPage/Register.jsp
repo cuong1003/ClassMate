@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +16,10 @@
     </head>
     <body>
         <h1>Register</h1>
+        <%-- Display error message if present --%>
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>
+        <% } %>
         <form action="${pageContext.request.contextPath}/register" method="post">
             Username: <input type="text" name="username" /><br>
             Password: <input type="password" name="password" /><br>

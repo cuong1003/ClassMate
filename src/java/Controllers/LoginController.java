@@ -24,6 +24,8 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        UserDAO dao = new UserDAO();
+    
         HttpSession ses = request.getSession();
         
         // check tồn tại sessionsession
@@ -43,6 +45,7 @@ public class LoginController extends HttpServlet {
         
         request.getRequestDispatcher("Views/LandingPage/Login.jsp").forward(request, response);
     } 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -53,7 +56,9 @@ public class LoginController extends HttpServlet {
           String r = request.getParameter("role");
           //autill lại username
           request.setAttribute("autoFillUsername", u);
-          
+//          if (dao.isUsernameExists(u)!= true) {
+//        // Username exists, set error message and forward back to registration page
+//        request.setAttribute("errorMessage", "Tài khoản không hợp lệ");
           Users loginUser = dao.checkLogin(u, p, r);
           if (loginUser != null) {
               HttpSession ses = request.getSession();
@@ -75,10 +80,15 @@ public class LoginController extends HttpServlet {
               }
           } else {
               request.setAttribute("fail", "User or Password wrong!");
-              request.getRequestDispatcher("Views/LandingPage/Login.jsp").forward(request, response);
+              if("0".equals(r)){
+                  response.sendRedirect("Views/LandingPage/Login.jsp?role=0");
+              }
+              else if("1".equals(r)){
+                  response.sendRedirect("Views/LandingPage/Login.jsp?role=1");
+              }
           }
     }
-
+    
     @Override
     public String getServletInfo() {
         return "Short description";

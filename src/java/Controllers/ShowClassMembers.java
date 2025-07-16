@@ -62,10 +62,10 @@ public class ShowClassMembers extends HttpServlet {
 ClassroomDAO dao = new ClassroomDAO();
 List<ClassroomMember> members = dao.loadClassMembers(classCode);
 
-// Lấy giáo viên
+// lay ten giao vien
 String teacherName = dao.getTeacherFullnameByClassCode(classCode);
 
-// Lấy tên + email học sinh như trước...
+// lay ten voi email hs
 List<String> names = new ArrayList<>();
 List<String> emails = new ArrayList<>();
 
@@ -73,11 +73,11 @@ for (ClassroomMember cm : members) {
     names.add(dao.getFullnameByUserId(cm.getUser_id()));
     emails.add(dao.getEmailByUserId(cm.getUser_id()));
 }
-
+// gui sang jsp
 request.setAttribute("members", members);
 request.setAttribute("names", names);
 request.setAttribute("emails", emails);
-request.setAttribute("teacherName", teacherName);  // gửi sang JSP
+request.setAttribute("teacherName", teacherName);  
 request.setAttribute("ccode", classCode);
 request.setAttribute("membersCount", members.size());
 request.getRequestDispatcher("/Views/Shared/showClassMembers.jsp").forward(request, response);
@@ -94,9 +94,19 @@ request.getRequestDispatcher("/Views/Shared/showClassMembers.jsp").forward(reque
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String classCode = request.getParameter("ccode");
+        String userIdStr = request.getParameter("userId");
+        ClassroomDAO dao = new ClassroomDAO();
+        try {
+            int userId = Integer.parseInt(userIdStr);
+            dao.delete(userId, classCode); // Gọi phương thức xóa
+            // Chuyển hướng về trang danh sách thành viên lớp
+            response.sendRedirect(request.getContextPath() + "/c/studentlist?ccode=" + classCode);
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "ID người dùng không hợp lệ.");
+            doGet(request, response); // Tải lại trang với thông báo lỗi
+        }
     }
-
     /** 
      * Returns a short description of the servlet.
      * @return a String containing servlet description

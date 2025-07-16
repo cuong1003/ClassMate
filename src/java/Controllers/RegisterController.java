@@ -28,7 +28,25 @@ public class RegisterController extends HttpServlet {
         String fullname = request.getParameter("fullname");
         String email = request.getParameter("email");
         int role = Integer.parseInt(request.getParameter("role"));
-        
+        // Basic input validation
+    if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty() ||
+        fullname == null || fullname.trim().isEmpty() || email == null || email.trim().isEmpty()  )
+          {
+        request.setAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin.");
+        request.getRequestDispatcher("Views/LandingPage/Register.jsp").forward(request, response);
+        return;
+    }
+
+    
+    
+   
+        // Check if username already exists
+    if (dao.isUsernameExists(username)) {
+        // Username exists, set error message and forward back to registration page
+        request.setAttribute("errorMessage", "Tên tài khoản đã tồn tại. Vui lòng tạo tài khoản khác khác.");
+        request.getRequestDispatcher("Views/LandingPage/Register.jsp").forward(request, response);
+    } else {
+        // Username does not exist, proceed with registration
         dao.register(username, password, fullname, email, role);
         HttpSession ses = request.getSession();
         ses.setAttribute("u", username);
@@ -36,3 +54,4 @@ public class RegisterController extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/login");
     }
 } 
+}

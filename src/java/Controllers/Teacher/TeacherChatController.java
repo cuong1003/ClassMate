@@ -1,5 +1,6 @@
 package Controllers.Teacher;
 
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,11 +16,16 @@ public class TeacherChatController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO: Handle teacher chat operations
-    }
+        
+    
+}
+
+    
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO: Handle teacher chat POST operations
-    }
+        
 } 
+}

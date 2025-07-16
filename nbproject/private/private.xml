@@ -3,7 +3,51 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/cg/Documents/GitHub/ClassMate/src/java/DAL/DBContext.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Teacher/TeacherAssignmentController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/AssignmentController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/DAL/ClassroomDAO.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Student/StudentAssignmentController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/RegisterController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/ShowClassMembers.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Teacher/TeacherClassController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Teacher/classManagement.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/LandingPage/Login.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/DAL/AssignmentDAO.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/HomeController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Models/Classroom.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Models/ClassroomMember.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Student/classList.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/DAL/UserDAO.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/DAL/SubmissionDAO.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/debug.html</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Models/Users.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Models/Assignment.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Student/StudentHome.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/LoginController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Teacher/home.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Student/assignmentList.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/ChatController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Teacher/TeacherChatController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Teacher/TeacherGradeController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Teacher/TeacherHome.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Student/StudentClassController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Student/home.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/ClassroomController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Student/chat.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Teacher/createAssignment.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/LandingPage/Register.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Shared/showClassMembers.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/DAL/DBContext.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/DAL/ChatDAO.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Student/submitAssignment.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Models/ChatMessage.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Teacher/chat.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Student/StudentSubmitController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Models/Submission.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/WEB-INF/web.xml</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Teacher/gradeAssignment.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/LandingPage/LandingPage.html</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Filter/NewFilter.java</file>
         </group>
     </open-files>
 </project-private>

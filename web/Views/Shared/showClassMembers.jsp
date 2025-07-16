@@ -1,3 +1,4 @@
+```jsp
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -149,6 +150,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+
         }
         
         .section-title {
@@ -254,6 +256,16 @@
         .avatar-teal { background: #009688; }
         .avatar-pink { background: #e91e63; }
     </style>
+    <script>
+        function toggleActionColumn() {
+            var actionColumn = document.querySelectorAll('.action-column');
+            var isVisible = actionColumn[0].style.display === 'table-cell';
+            actionColumn.forEach(function(element) {
+                element.style.display = isVisible ? 'none' : 'table-cell';
+            });
+            document.getElementById('optionsBtn').textContent = isVisible ? 'Tùy chọn' : 'Ẩn tùy chọn';
+        }
+    </script>
 </head>
 <body>
     <!-- Header - đồng bộ với home.jsp -->

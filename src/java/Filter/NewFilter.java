@@ -110,7 +110,7 @@ public class NewFilter implements Filter {
             // Cho phép truy cập các trang công khai không cần đăng nhập
             if (url.contains("/login") || 
                 url.contains("/Login") ||
-                url.contains("/Register") ||
+                url.contains("/register") ||
                 url.contains("/Views/LandingPage/") ||
                 url.equals(req.getContextPath() + "/") ||
                 url.equals(req.getContextPath())) {
