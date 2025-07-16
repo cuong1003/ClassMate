@@ -71,7 +71,16 @@
         </div>
     </div>
 
-    <%-- Sửa lại đường dẫn đến file JavaScript --%>
+    <%-- Set session alert to global variable --%>
+    <c:if test="${not empty sessionScope.folderalert}">
+        <script>
+            window.sessionAlert = '${sessionScope.folderalert}';
+        </script>
+        <%-- Clear session attribute after setting --%>
+        <c:remove var="folderalert" scope="session" />
+    </c:if>
+    
+    <%-- Load JavaScript file --%>
     <script src="${pageContext.request.contextPath}/Views/Teacher/js/home.js"></script>
 </body>
 </html> 

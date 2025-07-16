@@ -9,82 +9,38 @@ import java.util.List;
  */
 public class AssignmentDAO {
     // TODO: Add CRUD methods for Assignment
-    // Lấy danh sách bài tập bằng classcode 
-    public List<Assignment> getAssignByCcode(String ccode) throws Exception {
-        List<Assignment> assignments = new ArrayList<>();
-        //Order by id desc để hiển thị bài tập mới nhất ở đầu.
-        String sql = "SELECT a.* FROM Assignment AS a INNER JOIN Classroom AS c ON a .classroom_id = c.id WHERE c .class_code =  ? ORDER BY a.id DESC";
-        try {
-            DBContext db = new DBContext();
-            Connection conn = db.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            if (ccode != null) {
-                ps.setString(1, ccode.trim());
-            } else {
-                ps.setString(1, "");
-            }
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int assignmentId = rs.getInt("id");
-                int classId = rs.getInt("classroom_id");
-                String title = rs.getString("title");
-                String des = rs.getString("description");
-                int createdBy = rs.getInt("created_by");
-                Date createdAt = rs.getDate("created_at");
-                Date deadLine = rs.getDate("deadline");
-                assignments.add(new Assignment(assignmentId, classId, title, des, createdBy, createdAt, deadLine));
-            }
-            rs.close();
-            ps.close();
-            conn.close();   
-        } catch (SQLException e) {
+    
+    // Tạo bài tập (Assignment)
+    public static boolean createAssignment(int classroomId, String title, String description, int createdBy, java.sql.Timestamp deadline, String fileUrl) {
+        String sql = "INSERT INTO Assignment (classroom_id, title, description, type, file_url, deadline, created_by) VALUES (?, ?, ?, 'assignment', ?, ?, ?)";
+        try (Connection conn = new DBContext().getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, classroomId);
+            ps.setString(2, title);
+            ps.setString(3, description);
+            ps.setString(4, fileUrl);
+            ps.setTimestamp(5, deadline);
+            ps.setInt(6, createdBy);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return assignments;
     }
-    public void addAssignment(String ccode, String title, String description, int createdBy, Date deadline) throws Exception {
-        //Lấy classroom_id từ class_code
-        String getClassIdSql = "SELECT id FROM Classroom WHERE class_code = ?";
-        int classroomId = -1;
-        
-        try {
-            DBContext db = new DBContext();
-            Connection conn = db.getConnection();
-            
-            //Lấy classroom_id
-            PreparedStatement psGetId = conn.prepareStatement(getClassIdSql);
-            psGetId.setString(1, ccode);
-            ResultSet rs = psGetId.executeQuery();
-            
-            if (rs.next()) {
-                classroomId = rs.getInt("id");
-            } else {
-                rs.close();
-                psGetId.close();
-                conn.close();
-                throw new Exception("Không tìm thấy lớp học với mã: " + ccode);
-            }
-            
-            rs.close();
-            psGetId.close();
-            
-            //Insert bài tập
-            String insertSql = "INSERT INTO Assignment (classroom_id, title, description, created_by, created_at, deadline) VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement psInsert = conn.prepareStatement(insertSql);
-            psInsert.setInt(1, classroomId);  // Sử dụng classroom_id (int)
-            psInsert.setString(2, title);
-            psInsert.setString(3, description);
-            psInsert.setInt(4, createdBy);
-            psInsert.setDate(5, new java.sql.Date(System.currentTimeMillis())); // created_at = thời gian hiện tại
-            psInsert.setDate(6, deadline);  // deadline
-            
-            psInsert.executeUpdate();
-            psInsert.close();
-            conn.close();
-        } catch (SQLException e) {
+    
+    // Tạo thông báo (Announcement)
+    public static boolean createAnnouncement(int classroomId, String title, String description, int createdBy) {
+        String sql = "INSERT INTO Assignment (classroom_id, title, description, type, created_by) VALUES (?, ?, ?, 'announcement', ?)";
+        try (Connection conn = new DBContext().getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, classroomId);
+            ps.setString(2, title);
+            ps.setString(3, description);
+            ps.setInt(4, createdBy);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
-            throw new Exception("Lỗi khi thêm bài tập: " + e.getMessage());
+            return false;
         }
     }
 } 

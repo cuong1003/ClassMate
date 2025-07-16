@@ -5,7 +5,6 @@ import DAL.ClassroomDAO;
 import Models.Classroom;
 import Models.Users;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,10 +35,6 @@ public class TeacherHome extends HttpServlet {
         Users us = (Users)ses.getAttribute("us");
         String classname = request.getParameter("className").trim();
         String classcode = request.getParameter("classCode").trim();
-        classdao.createClass(classname,classcode,us.getUserId());
-        int classid = classdao.getClassroomIdByCode(classcode); //lấy Id của lớp vừa tạo để tạo Folder lưu dữ liệu
-        //Tạo folder lưu dữ liệu của lớp
-        //...ToBeContinue....
         response.sendRedirect(request.getContextPath() + "/t/teacherhome");
     }
 
