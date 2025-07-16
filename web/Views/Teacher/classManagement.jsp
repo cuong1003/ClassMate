@@ -1,13 +1,41 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Class Management - ClassMate</title>
-    <link rel="stylesheet" href="../../css/style.css">
+    <title>Bảng tin lớp học</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .post-form { margin-bottom: 30px; }
+        .post-box { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .post-author { font-weight: bold; }
+        .post-content { margin-top: 10px; }
+        textarea { width: 100%; height: 80px; }
+        button { padding: 8px 16px; background: #1976d2; color: white; border: none; border-radius: 4px; }
+        .post-time { font-size: 12px; color: gray; }
+    </style>
 </head>
 <body>
-    <h1>Class Management</h1>
-    <!-- TODO: Add class management content -->
     <a href="${pageContext.request.contextPath}/c/studentlist?ccode=${ccode}">Thành viên</a>
+    <h2>Lớp: ${ccode}</h2>
+
+    <!-- 🔵 FORM ĐĂNG BÀI -->
+    <div class="post-form">
+        <form method="post" action="${pageContext.request.contextPath}/t/classcontroller?ccode=${ccode}">
+
+            <textarea name="message" placeholder="Chia sẻ điều gì đó với lớp..."></textarea><br>
+            <button type="submit">Đăng bài</button>
+        </form>
+    </div>
+
+    <!--  DANH SÁCH BÀI ĐĂNG -->
+  <c:forEach var="chat" items="${chats}">
+    <c:if test="${not empty chat.message}">
+        <div style="margin-bottom: 10px;">
+            <b>${chat.sender}</b> <small>${chat.time}</small><br>
+            <span>${chat.message}</span>
+        </div>
+    </c:if>
+</c:forEach>
+
 </body>
-</html> 
+</html>

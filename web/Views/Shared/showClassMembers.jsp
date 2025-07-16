@@ -1,3 +1,4 @@
+```jsp
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -53,6 +54,10 @@
             text-align: center;
         }
 
+        .student-table th.action-column, .student-table td.action-column {
+            display: none; 
+        }
+
         .student-table th {
             background-color: #f0f0f0;
             color: #444;
@@ -63,7 +68,44 @@
             font-size: 14px;
             color: #666;
         }
+
+        .options-btn {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .options-btn:hover {
+            background-color: #357abd;
+        }
+
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
     </style>
+    <script>
+        function toggleActionColumn() {
+            var actionColumn = document.querySelectorAll('.action-column');
+            var isVisible = actionColumn[0].style.display === 'table-cell';
+            actionColumn.forEach(function(element) {
+                element.style.display = isVisible ? 'none' : 'table-cell';
+            });
+            document.getElementById('optionsBtn').textContent = isVisible ? 'Tùy chọn' : 'Ẩn tùy chọn';
+        }
+    </script>
 </head>
 <body>
 
@@ -77,17 +119,31 @@
         <span class="student-count">(${fn:length(members)} sinh viên)</span>
     </div>
 
+    <c:if test="${not empty error}">
+        <div style="color: red; margin-bottom: 10px;">${error}</div>
+    </c:if>
+
+    <button id="optionsBtn" class="options-btn" onclick="toggleActionColumn()">Tùy chọn</button>
+
     <table class="student-table">
         <tr>
             <th>STT</th>
             <th>Họ tên</th>
             <th>Email</th>
+            <th class="action-column">Hành động</th>
         </tr>
         <c:forEach var="m" items="${members}" varStatus="status">
             <tr>
                 <td>${status.index + 1}</td>
                 <td>${names[status.index]}</td>
                 <td>${emails[status.index]}</td>
+                <td class="action-column">
+                    <form action="${pageContext.request.contextPath}/c/studentlist" method="post" style="display:inline;">
+                        <input type="hidden" name="ccode" value="${ccode}">
+                        <input type="hidden" name="userId" value="${m.user_id}">
+                        <button type="submit" class="delete-btn" onclick="return confirm('Bạn có chắc muốn xóa học sinh này khỏi lớp?')">Xóa</button>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>

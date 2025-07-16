@@ -8,10 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 /**
  * ClassroomDAO for ClassMate system
  */
 public class ClassroomDAO {
+    private String status = "ok";
+    private Connection con;
     // TODO: Add CRUD methods for Classroom
     // Tạo lớp học
     public void createClass(String className, String classCode, int ownerId) {
@@ -30,6 +33,19 @@ public class ClassroomDAO {
             e.printStackTrace();
         }
     }
+
+    public ClassroomDAO() {
+        try {
+                con = new DBContext().getConnection();
+            } catch (Exception e) {
+                status = "Err at connection" + e.getMessage();
+                e.printStackTrace();
+            }
+
+        }
+    
+    
+    
     //Load danh sách lớp được thảo với id giáo viên.
     public List<Classroom> getClassByOwnerId(int ownerId) {
         //Note: Sẽ join thêm để lấy số lượng sinh viên có trong lớp đó của giáo viên.
@@ -142,6 +158,41 @@ public List<ClassroomMember> loadClassMembers(String classCode) {
 
     return members;
 }
+public void delete(int userId, String classCode) {
+         String sql = "DELETE FROM ClassroomMember WHERE user_id = ? AND classroom_id = "
+                 + "(SELECT id FROM Classroom WHERE class_code = ?)";
+        String status = "";
+        Connection con = null;
+        try {
+            con = new DBContext().getConnection();
+            con.setAutoCommit(false); // tat tu dong commit
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ps.setString(2, classCode);
+            ps.executeUpdate(); // Thực thi xóa
+            con.commit(); // xac nhan neu xoa thanh cong
+        } catch (Exception e) {
+            try {
+                if (con != null) {
+                    con.rollback(); // Hoàn tác nếu có lỗi
+                }
+            } catch (SQLException ex) {
+                status = "Lỗi khi hoàn tác: " + ex.getMessage();
+            }
+            status = "Lỗi khi xóa thành viên lớp: " + e.getMessage();
+            throw new RuntimeException(status);
+        } finally {
+            try {
+                if (con != null) {
+                    con.setAutoCommit(true); // Đặt lại chế độ tự động xác nhận
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                status = "Lỗi khi đặt lại chế độ tự động xác nhận: " + ex.getMessage();
+                throw new RuntimeException(status);
+            }
+        }
+    }
 
     
 } 

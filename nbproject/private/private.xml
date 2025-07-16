@@ -26,19 +26,23 @@
             <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/LoginController.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Teacher/home.jsp</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Student/assignmentList.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/ChatController.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Teacher/TeacherChatController.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Teacher/TeacherGradeController.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Teacher/TeacherHome.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Student/StudentClassController.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Student/home.jsp</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/ClassroomController.java</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Student/chat.jsp</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Teacher/createAssignment.jsp</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/LandingPage/Register.jsp</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Shared/showClassMembers.jsp</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/DAL/DBContext.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/DAL/ChatDAO.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Student/submitAssignment.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Models/ChatMessage.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Teacher/chat.jsp</file>
+            <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Controllers/Student/StudentSubmitController.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/src/java/Models/Submission.java</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/WEB-INF/web.xml</file>
             <file>file:/D:/New%20folder%20(2)/ClassMate/web/Views/Teacher/gradeAssignment.jsp</file>

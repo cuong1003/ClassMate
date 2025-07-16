@@ -4,6 +4,9 @@ import Models.Users;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * UserDAO for ClassMate system
@@ -65,5 +68,25 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public boolean isUsernameExists(String username) {
+        String sql = "SELECT COUNT(*) FROM [User] WHERE username = ?";
+        try {
+            DBContext db = new DBContext();
+        
+            Connection conn = db.getConnection(); // Your method to get DB connection
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Returns true if username exists
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 } 

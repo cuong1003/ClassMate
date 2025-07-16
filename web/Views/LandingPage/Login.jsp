@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,6 +21,9 @@
             Password: <input type="password" name="password" /><br>
             <input type="hidden" name="role" value="${autoFillRole != null ? autoFillRole : param.role}" />
             <input type="submit" value="Login" />
+            <% if (request.getAttribute("fail") != null) { %>
+            <p style="color: red;"><%= request.getAttribute("fail") %></p>
+        <% } %>
         </form>
     </body>
 </html>
