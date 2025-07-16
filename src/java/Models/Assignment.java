@@ -47,6 +47,25 @@ public class Assignment {
         this.createdBy = createdBy;
         this.createdAt = createdAt;
     }
+
+    // Constructor để lấy thông tin cho ListAssignment JSP
+    public Assignment(String title, String description, 
+                     String fileUrl, Date createdAt, Date deadline) {
+        this.title = title;
+        this.description = description;
+        this.type = "assignment";
+        this.fileUrl = fileUrl;
+        this.createdAt = createdAt;
+        this.deadline = deadline;
+    }
+
+    // Constructor để lấy thông tin cho ListAnnouncement JSP
+    public Assignment(String title, String description, Date createdAt) {
+        this.title = title;
+        this.description = description;
+        this.type = "announcement";
+        this.createdAt = createdAt;
+    }
     
     // Constructor chính
     public Assignment(int id, int classroomId, String title, String description, 

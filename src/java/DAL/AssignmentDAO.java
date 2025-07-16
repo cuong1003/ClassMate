@@ -43,4 +43,75 @@ public class AssignmentDAO {
             return false;
         }
     }
+
+    // Lấy ClassroomId từ ClassCode
+    public static int getClassroomId(String ccode) {
+        String sql = "SELECT id FROM Classroom WHERE class_code = ?";
+        try (Connection conn = new DBContext().getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, ccode);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+            return -1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    // Lấy danh sách bài tập của lớp (ShowAssignment.jsp)
+    public static List<Assignment> getAssignmentsList(String ccode) {
+        String sql = "SELECT a.title, a.description, a.file_url, a.created_at, a.deadline " +
+                 "FROM Assignment a " +
+                 "INNER JOIN Classroom c ON a.classroom_id = c.id " +
+                 "WHERE c.class_code = ? AND a.type = 'assignment' " +
+                 "ORDER BY a.created_at DESC";
+        try (Connection conn = new DBContext().getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, ccode);
+            ResultSet rs = ps.executeQuery();
+            List<Assignment> assignmentList = new ArrayList<>();
+            while (rs.next()) {
+                String title = rs.getString("title");
+                String description = rs.getString("description");
+                String fileUrl = rs.getString("file_url");
+                Timestamp createdAt = rs.getTimestamp("created_at");
+                Timestamp deadline = rs.getTimestamp("deadline");
+                Assignment assignment = new Assignment(title, description, fileUrl, createdAt, deadline);
+                assignmentList.add(assignment);
+            }
+            return assignmentList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    // Lấy danh sách thông báo (Announcement cho ClassManagement.jsp)
+    public static List<Assignment> getAnnouncementsList(String ccode) {
+        String sql = "SELECT a.title, a.description, a.created_at " +
+                     "FROM Assignment a " +
+                     "INNER JOIN Classroom c ON a.classroom_id = c.id " +
+                     "WHERE c.class_code = ? AND a.type = 'announcement' " + 
+                     "ORDER BY a.created_at DESC";
+        try (Connection conn = new DBContext().getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, ccode);
+            ResultSet rs = ps.executeQuery();
+            List<Assignment> announcementList = new ArrayList<>();
+            while (rs.next()) {
+                String title = rs.getString("title");
+                String description = rs.getString("description");
+                Timestamp createdAt = rs.getTimestamp("created_at");
+                // Sử dụng constructor có sẵn và set type sau đó
+                Assignment announcement = new Assignment(title, description, null, createdAt, null);
+                announcement.setType("announcement");
+                announcementList.add(announcement);
+            }
+            return announcementList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 } 

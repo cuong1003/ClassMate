@@ -1,6 +1,8 @@
 package Controllers.Teacher;
 
+import DAL.AssignmentDAO;
 import DAL.ClassroomDAO;
+import Models.Assignment;
 import Models.Classroom;
 import Models.Users;
 import jakarta.servlet.ServletException;
@@ -9,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -23,6 +26,12 @@ public class TeacherClassController extends HttpServlet {
         //Hiển thị thông tin Bản tin của lớp,...
         String ccode = request.getParameter("ccode");
         request.setAttribute("ccode", ccode);
+        HttpSession ses = request.getSession();
+        Users user = (Users) ses.getAttribute("us");
+        String createdBy = user.getFullname();
+        List<Assignment> announcementList = AssignmentDAO.getAnnouncementsList(ccode);
+        request.setAttribute("teacher", createdBy);
+        request.setAttribute("announcementList", announcementList);
         request.getRequestDispatcher("/Views/Teacher/classManagement.jsp").forward(request, response);
     }
     

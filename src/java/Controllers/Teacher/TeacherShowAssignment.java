@@ -6,18 +6,16 @@ package Controllers.Teacher;
 
 import DAL.AssignmentDAO;
 import Models.Assignment;
+import Models.Users;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date; // <-- Đây là java.util.Date
 
 public class TeacherShowAssignment extends HttpServlet {
 
@@ -26,8 +24,7 @@ public class TeacherShowAssignment extends HttpServlet {
             throws ServletException, IOException {
         try {
             String ccode = request.getParameter("ccode");
-            AssignmentDAO assDao = new AssignmentDAO();
-            List<Assignment> ass = assDao.getAssignByCcode(ccode);
+            List<Assignment> ass = AssignmentDAO.getAssignmentsList(ccode);
             request.setAttribute("assignments", ass);
             request.setAttribute("ccode", ccode); // Thêm dòng này để truyền ccode sang JSP
             request.getRequestDispatcher("/Views/Teacher/showClassAssignments.jsp").forward(request, response);
@@ -40,7 +37,18 @@ public class TeacherShowAssignment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        HttpSession session = request.getSession();
+        Users user = (Users)session.getAttribute("us");
+        int createdBy = user.getUserId(); // Lấy Id của người tạo.
+        String ccode = request.getParameter("ccode"); // Lấy ccode từ form.
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        String file_url = request.getParameter("file_url");
+        String deadlineStr = request.getParameter("deadline"); //"2024-01-15T14:30"
+        java.sql.Timestamp deadline = java.sql.Timestamp.valueOf(deadlineStr.replace("T", " ") + ":00"); // -> "2024-01-15 14:30:00"
+        int classroomId = AssignmentDAO.getClassroomId(ccode); //Lấy Id của classroom từ classcode.
+        AssignmentDAO.createAssignment(classroomId, title, description, createdBy, deadline, file_url);
+        response.sendRedirect(request.getContextPath() + "/t/assignmentlist?ccode=" + ccode);
     }
 
     @Override
