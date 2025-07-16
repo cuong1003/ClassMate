@@ -15,13 +15,13 @@
     <h1>Lớp Học</h1>
     
     <c:forEach items="${danhsachlop}" var="classroom" varStatus="status">
-            <div class="class-card">
+            <div>
                 <a href="${pageContext.request.contextPath}/t/classcontroller?ccode=${classroom.classCode}" class="card-link-wrapper">
-                    <div class="card-header" style="background-color: ${colors[status.index % fn:length(colors)]};">
+                    <div>
                         <h2 class="card-title">${classroom.className}</h2>
                         <p class="card-subtitle">${classroom.classCode}</p>
                     </div>
-                    <div class="card-body"></div>
+                    <div></div>
                 </a>
             </div>
     </c:forEach>
