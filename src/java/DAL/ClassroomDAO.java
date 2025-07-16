@@ -193,6 +193,83 @@ public void delete(int userId, String classCode) {
             }
         }
     }
+//tham gia lớp học
+    public boolean joinClassroom(int userId, String classCode) throws Exception {
+        String findClassSql = "SELECT id FROM Classroom WHERE class_code = ?";
+        String checkExistSql = "SELECT COUNT(*) FROM ClassroomMember WHERE user_id = ? AND classroom_id = ?";
+        String insertSql = "INSERT INTO ClassroomMember (user_id, classroom_id, joined_at) VALUES (?, ?, GETDATE())";
 
+        try (Connection conn = new DBContext().getConnection()) {
+            // 1. Tìm classroom_id
+            int classroomId = -1;
+            try (PreparedStatement stmt = conn.prepareStatement(findClassSql)) {
+                stmt.setString(1, classCode);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    classroomId = rs.getInt("id");
+                } else {
+                    return false; // không tìm thấy class
+                }
+            }
+
+            // 2. Kiểm tra đã tham gia chưa
+            try (PreparedStatement stmt = conn.prepareStatement(checkExistSql)) {
+                stmt.setInt(1, userId);
+                stmt.setInt(2, classroomId);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next() && rs.getInt(1) > 0) {
+                    return false; // đã tham gia rồi
+                }
+            }
+
+            // 3. Chèn dữ liệu
+            try (PreparedStatement stmt = conn.prepareStatement(insertSql)) {
+                stmt.setInt(1, userId);
+                stmt.setInt(2, classroomId);
+                stmt.executeUpdate();
+                return true; // thành công
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public List<Classroom> getClassByUserId(int userId) {
+        List<Classroom> classList = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    c.id, \n"
+                + "    c.class_name, \n"
+                + "    c.class_code,\n"
+                + "    c.created_by\n"
+                + "FROM \n"
+                + "    Classroom c\n"
+                + "JOIN \n"
+                + "    ClassroomMember cm ON c.id = cm.classroom_id\n"
+                + "WHERE \n"
+                + "    cm.user_id = ?;";
+        try {
+            DBContext db = new DBContext();
+            Connection conn = db.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int classroomId = rs.getInt("id");
+                String className = rs.getString("class_name");
+                String classCode = rs.getString("class_code");
+                int createBy = rs.getInt("created_by");
+                classList.add(new Classroom(classroomId, className, classCode, createBy));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return classList;
+
+    }
     
 } 
