@@ -36,15 +36,18 @@ public class TeacherStudentList extends HttpServlet {
         // lay ten voi email hs
         List<String> names = new ArrayList<>();
         List<String> emails = new ArrayList<>();
+        List<Integer> userIds = new ArrayList<>();
 
         for (ClassroomMember cm : members) {
             names.add(dao.getFullnameByUserId(cm.getUser_id()));
             emails.add(dao.getEmailByUserId(cm.getUser_id()));
+            userIds.add(cm.getUser_id());
         }
         // gui sang jsp
         request.setAttribute("members", members);
         request.setAttribute("names", names);
         request.setAttribute("emails", emails);
+        request.setAttribute("userIds", userIds);
         request.setAttribute("teacherName", teacherName);
         request.setAttribute("ccode", classCode);
         request.setAttribute("membersCount", members.size());
@@ -59,11 +62,14 @@ public class TeacherStudentList extends HttpServlet {
         ClassroomDAO dao = new ClassroomDAO();
         try {
             int userId = Integer.parseInt(userIdStr);
-            dao.delete(userId, classCode); // Gọi phương thức xóa
+            dao.deleteStudent(userId, classCode); // Sửa lại gọi đúng method deleteStudent
             // Chuyển hướng về trang danh sách thành viên lớp
             response.sendRedirect(request.getContextPath() + "/t/studentlist?ccode=" + classCode);
         } catch (NumberFormatException e) {
             request.setAttribute("error", "ID người dùng không hợp lệ.");
+            doGet(request, response); // Tải lại trang với thông báo lỗi
+        } catch (Exception e) {
+            request.setAttribute("error", "Lỗi khi xóa học sinh: " + e.getMessage());
             doGet(request, response); // Tải lại trang với thông báo lỗi
         }
     }

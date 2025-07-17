@@ -254,6 +254,48 @@
         .avatar-red { background: #f44336; }
         .avatar-teal { background: #009688; }
         .avatar-pink { background: #e91e63; }
+        
+        /* Delete button styles */
+        .delete-btn {
+            background: #ea4335;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            margin-left: auto;
+        }
+        
+        .delete-btn:hover {
+            background: #d93025;
+        }
+        
+        .delete-btn:active {
+            background: #c5221f;
+        }
+        
+        /* Success/Error messages */
+        .message {
+            padding: 12px 24px;
+            margin: 16px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .error-message {
+            background-color: #fce8e6;
+            color: #d93025;
+            border: 1px solid #fad2cf;
+        }
+        
+        .success-message {
+            background-color: #e6f4ea;
+            color: #137333;
+            border: 1px solid #b3e5c7;
+        }
     </style>
     <script>
         function toggleActionColumn() {
@@ -263,6 +305,30 @@
                 element.style.display = isVisible ? 'none' : 'table-cell';
             });
             document.getElementById('optionsBtn').textContent = isVisible ? 'Tùy chọn' : 'Ẩn tùy chọn';
+        }
+        
+        function confirmDelete(studentName, userId, classCode) {
+            if (confirm('Bạn có chắc chắn muốn xóa học sinh "' + studentName + '" khỏi lớp học này không?')) {
+                // Tạo form để gửi POST request
+                var form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '${pageContext.request.contextPath}/t/studentlist';
+                
+                var userIdInput = document.createElement('input');
+                userIdInput.type = 'hidden';
+                userIdInput.name = 'userId';
+                userIdInput.value = userId;
+                
+                var classCodeInput = document.createElement('input');
+                classCodeInput.type = 'hidden';
+                classCodeInput.name = 'ccode';
+                classCodeInput.value = classCode;
+                
+                form.appendChild(userIdInput);
+                form.appendChild(classCodeInput);
+                document.body.appendChild(form);
+                form.submit();
+            }
         }
     </script>
 </head>
@@ -291,6 +357,13 @@
     
     <!-- Main Content -->
     <div class="main-content">
+        <!-- Error/Success Messages -->
+        <c:if test="${not empty error}">
+            <div class="message error-message">
+                ${error}
+            </div>
+        </c:if>
+        
         <!-- Teacher Section -->
         <div class="section">
             <div class="section-header">
@@ -329,6 +402,7 @@
                             <div class="student-name">${names[status.index]}</div>
                             <div class="student-email">${emails[status.index]}</div>
                         </div>
+                        <button class="delete-btn" onclick="confirmDelete('${names[status.index]}', '${userIds[status.index]}', '${ccode}')">Xóa</button>
                     </div>
                 </c:forEach>
             </div>
