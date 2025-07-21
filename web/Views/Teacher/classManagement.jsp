@@ -31,7 +31,7 @@
     <div class="nav-tabs">
         <a href="#" class="nav-tab active">Bảng tin</a>
         <a href="${pageContext.request.contextPath}/t/danhsachbaitap?ccode=${ccode}" class="nav-tab">Bài tập trên lớp</a>
-        <a href="${pageContext.request.contextPath}/t/studentlist?ccode=${ccode}" class="nav-tab">Mọi người</a>
+        <a href="${pageContext.request.contextPath}/t/danhsachlop?ccode=${ccode}" class="nav-tab">Mọi người</a>
     </div>
     
     <!-- Main Content -->
