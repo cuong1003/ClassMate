@@ -63,7 +63,7 @@
             <c:set var="avatarColors" value="${['#187a32', '#c4281f', '#1668c9', '#e08c00', '#7d269c', '#006a70']}" />
             
             <div class="class-card">
-                <a href="${pageContext.request.contextPath}/t/classcontroller?ccode=${classroom.classCode}" class="card-link-wrapper">
+                <a href="${pageContext.request.contextPath}/t/bangtin?ccode=${classroom.classCode}" class="card-link-wrapper">
                     <div class="card-header" style="background-color: ${colors[status.index % fn:length(colors)]};">
                         <h2 class="card-title">${classroom.className}</h2>
                         <p class="card-subtitle">${classroom.classCode}</p>

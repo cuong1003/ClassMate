@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * StudentClassController for ClassMate system
+ * StudentAnnouncementMenu for ClassMate system
  */
-public class StudentClassController extends HttpServlet {
+public class StudentAnnouncementMenu extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -48,7 +48,7 @@ public class TeacherShowAssignment extends HttpServlet {
         java.sql.Timestamp deadline = java.sql.Timestamp.valueOf(deadlineStr.replace("T", " ") + ":00"); // -> "2024-01-15 14:30:00"
         int classroomId = AssignmentDAO.getClassroomId(ccode); //Lấy Id của classroom từ classcode.
         AssignmentDAO.createAssignment(classroomId, title, description, createdBy, deadline, file_url);
-        response.sendRedirect(request.getContextPath() + "/t/assignmentlist?ccode=" + ccode);
+        response.sendRedirect(request.getContextPath() + "/t/danhsachbaitap?ccode=" + ccode);
     }
 
     @Override

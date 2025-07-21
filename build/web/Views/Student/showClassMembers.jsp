@@ -285,8 +285,8 @@
     
     <!-- Navigation Tabs -->
     <div class="nav-tabs">
-        <a href="${pageContext.request.contextPath}/t/classcontroller?ccode=${ccode}" class="nav-tab">Bảng tin</a>
-        <a href="${pageContext.request.contextPath}/t/assignmentlist?ccode=${ccode}" class="nav-tab">Bài tập trên lớp</a>
+        <a href="${pageContext.request.contextPath}/t/bangtin?ccode=${ccode}" class="nav-tab">Bảng tin</a>
+        <a href="${pageContext.request.contextPath}/t/danhsachbaitap?ccode=${ccode}" class="nav-tab">Bài tập trên lớp</a>
         <a href="#" class="nav-tab active">Mọi người</a>
     </div>
     

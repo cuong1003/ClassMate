@@ -15,9 +15,9 @@ import java.util.List;
 
 
 /**
- * TeacherClassController for ClassMate system
+ * TeacherAnnouncementMenu for ClassMate system
  */
-public class TeacherClassController extends HttpServlet {
+public class TeacherAnnouncementMenu extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

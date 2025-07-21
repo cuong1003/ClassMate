@@ -27,7 +27,7 @@
     
     <!-- Navigation Tabs -->
     <div class="nav-tabs">
-        <a href="${pageContext.request.contextPath}/t/classcontroller?ccode=${ccode}" class="nav-tab">Bảng tin</a>
+        <a href="${pageContext.request.contextPath}/t/bangtin?ccode=${ccode}" class="nav-tab">Bảng tin</a>
         <a href="#" class="nav-tab active">Bài tập trên lớp</a>
         <a href="${pageContext.request.contextPath}/t/studentlist?ccode=${ccode}" class="nav-tab">Mọi người</a>
     </div>
@@ -41,7 +41,7 @@
             </button>
             
             <div id="assignmentForm" class="assignment-form">
-                <form action="${pageContext.request.contextPath}/t/assignmentlist" method="post">
+                <form action="${pageContext.request.contextPath}/t/danhsachbaitap" method="post">
                     <input type="hidden" name="ccode" value="${ccode}">
                     
                     <div class="form-group">
