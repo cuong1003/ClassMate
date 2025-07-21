@@ -118,13 +118,12 @@ public class NewFilter implements Filter {
             } else if (ses.getAttribute("us")!=null) {
                 Users us = (Users)ses.getAttribute("us");
                 if (us.getRole()==0) {  // Giáo viên
-                    if (url.contains(req.getContextPath()+"/Student/"))
-                        res.sendRedirect(req.getContextPath()+"/Teacher/TeacherHome");
+                    if (url.contains(req.getContextPath()+"/s/"))
+                        res.sendRedirect(req.getContextPath()+"/t/teacherhome");
                     else
                         chain.doFilter(request, response);
                 } else if (us.getRole()==1) {  // Học sinh
-                    if (url.contains(req.getContextPath()+"/Teacher/") || 
-                        url.contains(req.getContextPath()+"/teacherhome"))
+                    if (url.contains(req.getContextPath()+"/t/"))
                         res.sendRedirect(req.getContextPath()+"/s/studenthome");
                     else
                         chain.doFilter(request, response);

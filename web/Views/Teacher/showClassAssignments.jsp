@@ -91,7 +91,7 @@
                                 <td>${assignment.description}</td>
                                 <td>
                                     <c:if test="${not empty assignment.fileUrl}">
-                                        <a href="${assignment.fileUrl}" target="_blank" class="file-link">
+                                        <a href="${assignment.fileUrl}" target="_blank" class="file-link" onclick="event.stopPropagation();">
                                             Xem tệp đính kèm
                                         </a>
                                     </c:if>

@@ -519,10 +519,15 @@ tr:hover {
     padding: 4px 8px;
     border-radius: 12px;
     background: rgba(26, 115, 232, 0.1);
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    cursor: pointer;
 }
 
 .file-link-small:hover {
     background: rgba(26, 115, 232, 0.2);
+    text-decoration: underline;
 }
 
 .no-file {

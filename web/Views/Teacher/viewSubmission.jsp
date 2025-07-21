@@ -75,7 +75,7 @@
                                     <div class="quick-info">
                                         <div class="file-status">
                                             <c:if test="${not empty submission.fileUrl}">
-                                                <a href="${submission.fileUrl}" target="_blank" class="file-link-small" onclick="event.stopPropagation();">
+                                                <a href="${submission.fileUrl}" target="_blank" class="file-link-small" onclick="event.stopPropagation(); console.log('File link clicked:', this.href);">
                                                     📎 Xem tệp
                                                 </a>
                                             </c:if>
