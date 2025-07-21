@@ -24,14 +24,17 @@ public class StudentSubmitAssignment extends HttpServlet {
             throws ServletException, IOException {
         try {
             int assigId = Integer.parseInt(request.getParameter("id"));
+            String ccode = request.getParameter("ccode");
             Assignment baitap = AssignmentDAO.getAssigmentById(assigId);
             request.setAttribute("assignment", baitap);
+            request.setAttribute("ccode", ccode);
             request.getRequestDispatcher("/Views/Student/SubmitAssignmentSite.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             System.out.println(e+"submitsubmitassignment");
         }        
         //cho ló chạy lại nếu nó sai lầm
-        response.sendRedirect(request.getContextPath() + "/t/nopbaitap?id="+ request.getParameter("id").trim());
+        response.sendRedirect(request.getContextPath() + "/t/nopbaitap?id="+ request.getParameter("id").trim()
+                +"&"+request.getParameter("ccode").trim());
     }
 
     @Override
