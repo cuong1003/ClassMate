@@ -56,6 +56,9 @@
                         </div>
                     </div>
                     <div class="dropdown-divider"></div>
+                    <a href="${pageContext.request.contextPath}/updatethongtin?id=${sessionScope.us.getUserId()}" class="dropdown-item logout-item">
+                        <span class="logout-icon">🚪</span>
+                        Chỉnh sửa thông tin
                     <a href="${pageContext.request.contextPath}/exit" class="dropdown-item logout-item">
                         <span class="logout-icon">🚪</span>
                         Đăng xuất
