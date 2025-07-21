@@ -2,6 +2,7 @@ package Controllers.Teacher;
 
 import DAL.AssignmentDAO;
 import DAL.ClassroomDAO;
+import DAL.UserDAO;
 import Models.Assignment;
 import Models.Classroom;
 import Models.Users;
@@ -24,13 +25,17 @@ public class TeacherAnnouncementMenu extends HttpServlet {
             throws ServletException, IOException {
         // TODO: Handle teacher class management
         //Hiển thị thông tin Bản tin của lớp,...
+        UserDAO udao = new UserDAO();
         String ccode = request.getParameter("ccode");
         request.setAttribute("ccode", ccode);
-        HttpSession ses = request.getSession();
-        Users user = (Users) ses.getAttribute("us");
-        String createdBy = user.getFullName();
         List<Assignment> announcementList = AssignmentDAO.getAnnouncementsList(ccode);
-        request.setAttribute("teacher", createdBy);
+        if (announcementList != null) {
+            
+            int createdById = announcementList.get(0).getCreatedBy();
+            Users us = udao.GetUserById(createdById);
+            String namecreatedby = us.getFullName();
+            request.setAttribute("teacher", namecreatedby);
+        }
         request.setAttribute("announcementList", announcementList);
         request.getRequestDispatcher("/Views/Teacher/classManagement.jsp").forward(request, response);
     }

@@ -21,6 +21,7 @@ public class Assignment {
     }
 
     // Constructor cho Assignment (Bài tập)
+    //Assignment(idd, class_id, title, des, url, deadline, created_at)
     public Assignment(int id, int classroomId, String title, String description, 
                      String fileUrl, Date deadline, int createdBy, Date createdAt) {
         this.id = id;
@@ -31,6 +32,18 @@ public class Assignment {
         this.fileUrl = fileUrl;
         this.deadline = deadline;
         this.createdBy = createdBy;
+        this.createdAt = createdAt;
+    }
+    
+    public Assignment(int id, int classroomId, String title, String description, 
+                     String fileUrl, Date deadline, Date createdAt) {
+        this.id = id;
+        this.classroomId = classroomId;
+        this.title = title;
+        this.description = description;
+        this.type = "assignment";
+        this.fileUrl = fileUrl;
+        this.deadline = deadline;
         this.createdAt = createdAt;
     }
     
@@ -49,22 +62,25 @@ public class Assignment {
     }
 
     // Constructor để lấy thông tin cho ListAssignment JSP
-    public Assignment(String title, String description, 
-                     String fileUrl, Date createdAt, Date deadline) {
+    public Assignment(int id, String title, String description, 
+                     String fileUrl, Date createdAt, Date deadline, int createdBy) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.type = "assignment";
         this.fileUrl = fileUrl;
         this.createdAt = createdAt;
         this.deadline = deadline;
+        this.createdBy = createdBy;
     }
 
     // Constructor để lấy thông tin cho ListAnnouncement JSP
-    public Assignment(String title, String description, Date createdAt) {
+    public Assignment(String title, String description, Date createdAt, int createdBy) {
         this.title = title;
         this.description = description;
         this.type = "announcement";
         this.createdAt = createdAt;
+        this.createdBy = createdBy;
     }
     
     // Constructor chính
