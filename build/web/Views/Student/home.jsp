@@ -33,6 +33,7 @@
                             <span class="user-icon">👤</span>
                             <span class="user-info-title">Thông tin người dùng</span>
                         </div>
+                        
                         <div class="user-info-content">
                             <div class="user-info-item">
                                 <span class="info-label">ID:</span>
@@ -83,6 +84,10 @@
                     <%-- Display first letter of the class name --%>
                     ${fn:substring(classroom.className, 0, 1)}
                 </div>
+                    <form action="${pageContext.request.contextPath}/s/studenthome" method="post">
+    <input type="hidden" name="ccode" value="${classroom.classCode}">
+    <button type="submit" name="leave" value="leave">Rời</button>
+</form>
             </div>
         </c:forEach>
     </main>
