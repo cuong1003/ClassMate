@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0" 
-         xmlns="https://jakarta.ee/xml/ns/jakartaee" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-    
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <!-- Welcome file configuration -->
+    <servlet-mapping>
+        <servlet-name>EditUserController</servlet-name>
+        <url-pattern>/updatethongtin</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Views/LandingPage/LandingPage.html</welcome-file>
     </welcome-file-list>
-    
     <!-- Filter configuration -->
     <filter>
         <filter-name>NewFilter</filter-name>
@@ -18,19 +17,20 @@
         <filter-name>NewFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
     <!-- ========================= BASIC CONTROLLERS ========================= -->
-    
     <!-- Login Controller -->
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>Controllers.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditUserController</servlet-name>
+        <servlet-class>Controllers.EditUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-    
     <!-- Register Controller -->
     <servlet>
         <servlet-name>RegisterController</servlet-name>
@@ -40,7 +40,6 @@
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
-    
     <!-- Logout Controller -->
     <servlet>
         <servlet-name>LogoutController</servlet-name>
@@ -50,9 +49,7 @@
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/exit</url-pattern>
     </servlet-mapping>
-    
     <!-- ========================= STUDENT CONTROLLERS ========================= -->
-    
     <!-- Student Home -->
     <servlet>
         <servlet-name>StudentHome</servlet-name>
@@ -62,7 +59,6 @@
         <servlet-name>StudentHome</servlet-name>
         <url-pattern>/s/studenthome</url-pattern>
     </servlet-mapping>
-    
     <!-- Student Show Assignment -->
     <servlet>
         <servlet-name>StudentShowAssignment</servlet-name>
@@ -72,7 +68,6 @@
         <servlet-name>StudentShowAssignment</servlet-name>
         <url-pattern>/s/danhsachbaitap</url-pattern>
     </servlet-mapping>
-    
     <!-- Student Submit Assignment -->
     <servlet>
         <servlet-name>StudentSubmitAssignment</servlet-name>
@@ -82,7 +77,6 @@
         <servlet-name>StudentSubmitAssignment</servlet-name>
         <url-pattern>/s/nopbaitap</url-pattern>
     </servlet-mapping>
-    
     <!-- Student Show Members -->
     <servlet>
         <servlet-name>ShowMemberController</servlet-name>
@@ -92,7 +86,6 @@
         <servlet-name>ShowMemberController</servlet-name>
         <url-pattern>/s/danhsachlop</url-pattern>
     </servlet-mapping>
-    
     <!-- Student Announcement Menu -->
     <servlet>
         <servlet-name>StudentHomeClassController</servlet-name>
@@ -102,9 +95,7 @@
         <servlet-name>StudentHomeClassController</servlet-name>
         <url-pattern>/s/bangtin</url-pattern>
     </servlet-mapping>
-    
     <!-- ========================= TEACHER CONTROLLERS ========================= -->
-    
     <!-- Teacher Home -->
     <servlet>
         <servlet-name>TeacherHome</servlet-name>
@@ -114,7 +105,6 @@
         <servlet-name>TeacherHome</servlet-name>
         <url-pattern>/t/teacherhome</url-pattern>
     </servlet-mapping>
-    
     <!-- Teacher Show Assignment -->
     <servlet>
         <servlet-name>TeacherShowAssignment</servlet-name>
@@ -124,7 +114,6 @@
         <servlet-name>TeacherShowAssignment</servlet-name>
         <url-pattern>/t/danhsachbaitap</url-pattern>
     </servlet-mapping>
-    
     <!-- Teacher Student List -->
     <servlet>
         <servlet-name>TeacherStudentList</servlet-name>
@@ -134,7 +123,6 @@
         <servlet-name>TeacherStudentList</servlet-name>
         <url-pattern>/t/danhsachlop</url-pattern>
     </servlet-mapping>
-    
     <!-- Teacher Announcement Menu -->
     <servlet>
         <servlet-name>TeacherClassController</servlet-name>
@@ -144,5 +132,4 @@
         <servlet-name>TeacherClassController</servlet-name>
         <url-pattern>/t/bangtin</url-pattern>
     </servlet-mapping>
-    
 </web-app>
