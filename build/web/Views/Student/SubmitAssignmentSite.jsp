@@ -102,7 +102,55 @@
             </div>
         </div>
     </div>
-     
+     <!-- Display Submission Section -->
+        <c:if test="${not empty submission}">
+            <div class="submission-details">
+                <h2>Thông tin bài nộp của bạn</h2>
+                <table>
+                    <tr>
+                        <th>Nội dung bài làm:</th>
+                        <td>${submission.submit_text}</td>
+                    </tr>
+                    <tr>
+                        <th>Link tệp đính kèm:</th>
+                        <td>
+                            <c:if test="${not empty submission.fileUrl}">
+                                <a href="${submission.fileUrl}" target="_blank" class="file-link">
+                                    Xem tệp đính kèm
+                                </a>
+                            </c:if>
+                            <c:if test="${empty submission.fileUrl}">
+                                <span style="color: #999;">Không có tệp</span>
+                            </c:if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Thời gian nộp:</th>
+                        <td>
+                            <fmt:formatDate value="${submission.submmitted_at}" 
+                                            pattern="dd/MM/yyyy HH:mm" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Điểm:</th>
+                        <td>${submission.grade == -1? "Chưa chấm" : ""}</td>
+                    </tr>
+                    <tr>
+                        <th>Phản hồi:</th>
+                        <td>${submission.feedback == null?"chưa có":""}</td>
+                    </tr>
+                </table>
+                <c:if test="${not empty success}">
+                    <p style="color: green;">${success}</p>
+                </c:if>
+            </div>
+        </c:if>
+
+        <!-- Error Message -->
+        <c:if test="${not empty error}">
+            <p style="color: red;">${error}</p>
+        </c:if>
+    
     <!-- JavaScript -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/Views/Student/js/showClassAssignment.js"></script>
 </body>

@@ -125,7 +125,7 @@ public class NewFilter implements Filter {
                 } else if (us.getRole()==1) {  // Học sinh
                     if (url.contains(req.getContextPath()+"/Teacher/") || 
                         url.contains(req.getContextPath()+"/teacherhome"))
-                        res.sendRedirect(req.getContextPath()+"/Student/StudentHome");
+                        res.sendRedirect(req.getContextPath()+"/s/studenthome");
                     else
                         chain.doFilter(request, response);
                 } 
