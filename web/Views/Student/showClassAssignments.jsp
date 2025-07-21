@@ -48,7 +48,7 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${assignments}" var="assignment">
-                            <tr class="clickable-row" onclick="window.location.href='${pageContext.request.contextPath}/s/nopbaitap?id=${assignment.id}'">
+                            <tr class="clickable-row" onclick="window.location.href='${pageContext.request.contextPath}/s/nopbaitap?id=${assignment.id}&ccode=${ccode}'">
                                 <td><strong>${assignment.title}</strong></td>
                                 <td>${assignment.description}</td>
                                 <td>
