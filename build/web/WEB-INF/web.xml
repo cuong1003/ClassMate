@@ -1,67 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+<web-app version="6.0" 
+         xmlns="https://jakarta.ee/xml/ns/jakartaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    
     <!-- Welcome file configuration -->
-    <servlet-mapping>
-        <servlet-name>ShowMemberController</servlet-name>
-        <url-pattern>/s/danhsachlop</url-pattern>
-    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Views/LandingPage/LandingPage.html</welcome-file>
-        <servlet>
-            <servlet-name>LogoutController</servlet-name>
-            <servlet-class>Controllers.LogoutController</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>LogoutController</servlet-name>
-            <url-pattern>/exit</url-pattern>
-        </servlet-mapping>
-        <servlet>
-            <servlet-name>RegisterController</servlet-name>
-            <servlet-class>Controllers.RegisterController</servlet-class>
-        </servlet>
     </welcome-file-list>
+    
     <!-- Filter configuration -->
     <filter>
         <filter-name>NewFilter</filter-name>
         <filter-class>Filter.NewFilter</filter-class>
-        <servlet-mapping>
-            <servlet-name>LogoutController</servlet-name>
-            <url-pattern>/exit</url-pattern>
-        </servlet-mapping>
     </filter>
     <filter-mapping>
         <filter-name>NewFilter</filter-name>
         <url-pattern>/*</url-pattern>
-        <servlet-mapping>
-            <servlet-name>LogoutController</servlet-name>
-            <url-pattern>/exit</url-pattern>
-        </servlet-mapping>
     </filter-mapping>
-    <!-- Basic Controllers -->
+    
+    <!-- ========================= BASIC CONTROLLERS ========================= -->
+    
+    <!-- Login Controller -->
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>Controllers.LoginController</servlet-class>
-        <servlet>
-            <servlet-name>LogoutController</servlet-name>
-            <servlet-class>Controllers.LogoutController</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>LogoutController</servlet-name>
-            <url-pattern>/exit</url-pattern>
-        </servlet-mapping>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
-        <servlet>
-            <servlet-name>RegisterController</servlet-name>
-            <servlet-class>Controllers.RegisterController</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>RegisterController</servlet-name>
-            <url-pattern>/register</url-pattern>
-        </servlet-mapping>
     </servlet-mapping>
+    
+    <!-- Register Controller -->
     <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>Controllers.RegisterController</servlet-class>
@@ -70,6 +40,8 @@
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+    
+    <!-- Logout Controller -->
     <servlet>
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>Controllers.LogoutController</servlet-class>
@@ -78,7 +50,10 @@
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/exit</url-pattern>
     </servlet-mapping>
-    <!-- Student Controllers -->
+    
+    <!-- ========================= STUDENT CONTROLLERS ========================= -->
+    
+    <!-- Student Home -->
     <servlet>
         <servlet-name>StudentHome</servlet-name>
         <servlet-class>Controllers.Student.StudentHome</servlet-class>
@@ -86,39 +61,39 @@
     <servlet-mapping>
         <servlet-name>StudentHome</servlet-name>
         <url-pattern>/s/studenthome</url-pattern>
-        <servlet>
-            <servlet-name>StudentHome</servlet-name>
-            <servlet-class>Controllers.Student.StudentHome</servlet-class>
-        </servlet>
     </servlet-mapping>
+    
+    <!-- Student Show Assignment -->
     <servlet>
         <servlet-name>StudentShowAssignment</servlet-name>
         <servlet-class>Controllers.Student.StudentShowAssignment</servlet-class>
-        <servlet>
-            <servlet-name>StudentHome</servlet-name>
-            <servlet-class>Controllers.Student.StudentHome</servlet-class>
-        </servlet>
     </servlet>
     <servlet-mapping>
         <servlet-name>StudentShowAssignment</servlet-name>
         <url-pattern>/s/danhsachbaitap</url-pattern>
-        <servlet>
-            <servlet-name>StudentHome</servlet-name>
-            <servlet-class>Controllers.Student.StudentHome</servlet-class>
-        </servlet>
     </servlet-mapping>
+    
+    <!-- Student Submit Assignment -->
     <servlet>
         <servlet-name>StudentSubmitAssignment</servlet-name>
         <servlet-class>Controllers.Student.StudentSubmitAssignment</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ShowMemberController</servlet-name>
-        <servlet-class>Controllers.Student.ShowMemberController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>StudentSubmitAssignment</servlet-name>
         <url-pattern>/s/nopbaitap</url-pattern>
     </servlet-mapping>
+    
+    <!-- Student Show Members -->
+    <servlet>
+        <servlet-name>ShowMemberController</servlet-name>
+        <servlet-class>Controllers.Student.ShowMemberController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowMemberController</servlet-name>
+        <url-pattern>/s/danhsachlop</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Student Announcement Menu -->
     <servlet>
         <servlet-name>StudentHomeClassController</servlet-name>
         <servlet-class>Controllers.Student.StudentAnnouncementMenu</servlet-class>
@@ -127,7 +102,10 @@
         <servlet-name>StudentHomeClassController</servlet-name>
         <url-pattern>/s/bangtin</url-pattern>
     </servlet-mapping>
-    <!-- Teacher Controllers -->
+    
+    <!-- ========================= TEACHER CONTROLLERS ========================= -->
+    
+    <!-- Teacher Home -->
     <servlet>
         <servlet-name>TeacherHome</servlet-name>
         <servlet-class>Controllers.Teacher.TeacherHome</servlet-class>
@@ -136,51 +114,28 @@
         <servlet-name>TeacherHome</servlet-name>
         <url-pattern>/t/teacherhome</url-pattern>
     </servlet-mapping>
+    
+    <!-- Teacher Show Assignment -->
     <servlet>
         <servlet-name>TeacherShowAssignment</servlet-name>
         <servlet-class>Controllers.Teacher.TeacherShowAssignment</servlet-class>
-        <servlet>
-            <servlet-name>LoginController</servlet-name>
-            <servlet-class>Controllers.LoginController</servlet-class>
-        </servlet>
-        <servlet>
-            <servlet-name>RegisterController</servlet-name>
-            <servlet-class>Controllers.RegisterController</servlet-class>
-        </servlet>
-        <welcome-file-list>
-            <welcome-file>Views/LandingPage/LandingPage.html</welcome-file>
-        </welcome-file-list>
     </servlet>
     <servlet-mapping>
         <servlet-name>TeacherShowAssignment</servlet-name>
         <url-pattern>/t/danhsachbaitap</url-pattern>
-        <servlet-mapping>
-            <servlet-name>TeacherStudentList</servlet-name>
-            <url-pattern>/t/danhsachlop</url-pattern>
-        </servlet-mapping>
-        <welcome-file-list>
-            <welcome-file>Views/LandingPage/LandingPage.html</welcome-file>
-        </welcome-file-list>
     </servlet-mapping>
+    
+    <!-- Teacher Student List -->
     <servlet>
         <servlet-name>TeacherStudentList</servlet-name>
         <servlet-class>Controllers.Teacher.TeacherStudentList</servlet-class>
-        <welcome-file-list>
-            <welcome-file>Views/LandingPage/LandingPage.html</welcome-file>
-        </welcome-file-list>
     </servlet>
     <servlet-mapping>
         <servlet-name>TeacherStudentList</servlet-name>
         <url-pattern>/t/danhsachlop</url-pattern>
-        <servlet>
-            <servlet-name>LoginController</servlet-name>
-            <servlet-class>Controllers.LoginController</servlet-class>
-        </servlet>
-        <servlet>
-            <servlet-name>RegisterController</servlet-name>
-            <servlet-class>Controllers.RegisterController</servlet-class>
-        </servlet>
     </servlet-mapping>
+    
+    <!-- Teacher Announcement Menu -->
     <servlet>
         <servlet-name>TeacherClassController</servlet-name>
         <servlet-class>Controllers.Teacher.TeacherAnnouncementMenu</servlet-class>
@@ -188,13 +143,6 @@
     <servlet-mapping>
         <servlet-name>TeacherClassController</servlet-name>
         <url-pattern>/t/bangtin</url-pattern>
-        <servlet>
-            <servlet-name>LoginController</servlet-name>
-            <servlet-class>Controllers.LoginController</servlet-class>
-        </servlet>
-        <servlet>
-            <servlet-name>RegisterController</servlet-name>
-            <servlet-class>Controllers.RegisterController</servlet-class>
-        </servlet>
     </servlet-mapping>
+    
 </web-app>
