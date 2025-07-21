@@ -14,12 +14,11 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-
 /**
  * TeacherAnnouncementMenu for ClassMate system
  */
 public class TeacherAnnouncementMenu extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,7 +29,7 @@ public class TeacherAnnouncementMenu extends HttpServlet {
         request.setAttribute("ccode", ccode);
         List<Assignment> announcementList = AssignmentDAO.getAnnouncementsList(ccode);
         if (announcementList != null) {
-            
+
             int createdById = announcementList.get(0).getCreatedBy();
             Users us = udao.GetUserById(createdById);
             String namecreatedby = us.getFullName();
@@ -39,22 +38,24 @@ public class TeacherAnnouncementMenu extends HttpServlet {
         request.setAttribute("announcementList", announcementList);
         request.getRequestDispatcher("/Views/Teacher/classManagement.jsp").forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession ses = request.getSession();
         String ccode = request.getParameter("ccode");
         Users us = (Users) ses.getAttribute("us");
-        String title = request.getParameter("title").trim();
-        String des = request.getParameter("description").trim();
-        boolean created = AssignmentDAO.createAnnouncement(AssignmentDAO.getClassroomId(ccode),title,des,us.getUserId());
-        if (created) {
-            ses.setAttribute("alert", "Tạo thông báo thành công!");
-        } else {
-            ses.setAttribute("alert", "Lỗi không tạo được thông báo");
+        if (request.getParameter("title") != null && request.getParameter("description") != null) {
+            String title = request.getParameter("title").trim();
+            String des = request.getParameter("des").trim();
+            boolean created = AssignmentDAO.createAnnouncement(AssignmentDAO.getClassroomId(ccode), title, des, us.getUserId());
+            if (created) {
+                ses.setAttribute("alert", "Tạo thông báo thành công!");
+            } else {
+                ses.setAttribute("alert", "Lỗi không tạo được thông báo");
+            }
         }
-        response.sendRedirect(request.getContextPath() + "/t/bangtin?ccode="+ccode);
-        
+        response.sendRedirect(request.getContextPath() + "/t/bangtin?ccode=" + ccode);
+
     }
-} 
+}
