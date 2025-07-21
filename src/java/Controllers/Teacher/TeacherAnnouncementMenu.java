@@ -43,7 +43,18 @@ public class TeacherAnnouncementMenu extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        HttpSession ses = request.getSession();
+        String ccode = request.getParameter("ccode");
+        Users us = (Users) ses.getAttribute("us");
+        String title = request.getParameter("title").trim();
+        String des = request.getParameter("description").trim();
+        boolean created = AssignmentDAO.createAnnouncement(AssignmentDAO.getClassroomId(ccode),title,des,us.getUserId());
+        if (created) {
+            ses.setAttribute("alert", "Tạo thông báo thành công!");
+        } else {
+            ses.setAttribute("alert", "Lỗi không tạo được thông báo");
+        }
+        response.sendRedirect(request.getContextPath() + "/t/bangtin?ccode="+ccode);
         
     }
 } 

@@ -22,11 +22,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Add click handler for create announcement button
 document.addEventListener('DOMContentLoaded', function() {
-    const createBtn = document.querySelector('.create-btn');
-    if (createBtn) {
-        createBtn.addEventListener('click', function() {
-            // Placeholder for create announcement functionality
-            alert('Chức năng tạo thông báo sẽ được phát triển trong tương lai!');
+    const toggleBtn = document.getElementById('toggleAnnouncementBtn');
+    const announcementForm = document.getElementById('announcementForm');
+    const cancelBtn = document.getElementById('cancelAnnouncementBtn');
+    
+    if (toggleBtn && announcementForm) {
+        toggleBtn.addEventListener('click', function() {
+            if (announcementForm.classList.contains('show')) {
+                // Hide form
+                announcementForm.classList.remove('show');
+                toggleBtn.textContent = '+ Tạo thông báo mới';
+            } else {
+                // Show form
+                announcementForm.classList.add('show');
+                toggleBtn.textContent = '✗ Đóng form';
+                // Focus vào trường title
+                document.getElementById('title').focus();
+            }
+        });
+    }
+    
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            // Hide form and reset
+            announcementForm.classList.remove('show');
+            toggleBtn.textContent = '+ Tạo thông báo mới';
+            // Reset form
+            document.getElementById('title').value = '';
+            document.getElementById('description').value = '';
         });
     }
 });

@@ -48,7 +48,28 @@
         
         <!-- Create Announcement Button -->
         <div class="create-announcement-section">
-            <button class="create-btn">+ Tạo thông báo mới</button>
+            <button type="button" id="toggleAnnouncementBtn" class="create-btn">+ Tạo thông báo mới</button>
+            
+            <div id="announcementForm" class="announcement-form">
+                <form action="${pageContext.request.contextPath}/t/bangtin" method="post">
+                    <input type="hidden" name="ccode" value="${ccode}">
+                    
+                    <div class="form-group">
+                        <label for="title">Tiêu đề thông báo:</label>
+                        <input type="text" id="title" name="title" placeholder="Nhập tiêu đề thông báo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Nội dung thông báo:</label>
+                        <textarea id="description" name="des" placeholder="Nhập nội dung chi tiết thông báo" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">✓ Đăng thông báo</button>
+                        <button type="button" id="cancelAnnouncementBtn" class="cancel-btn">✗ Hủy</button>
+                    </div>
+                </form>
+            </div>
         </div>
         
         <!-- Announcements Cards -->

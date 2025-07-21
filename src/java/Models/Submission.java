@@ -17,10 +17,9 @@ public class Submission {
     private Date submmitted_at;
     private int grade;
     private String feedback;
+    private String user_name;
 
     public Submission() {
-        
-        this.grade = -1; // Giá trị mặc định theo ràng buộc SQL
     }
 
     public Submission(int id, int assignment_id, int user_id, String submit_text, String fileUrl, Date summitted_at, int grade, String feedback) {
@@ -33,6 +32,28 @@ public class Submission {
         this.grade = grade;
         this.feedback = feedback;
     }
+    
+    public Submission(int id, int assignment_id, int user_id,String user_name, String submit_text, String fileUrl, Date summitted_at, int grade, String feedback) {
+        this.id = id;
+        this.assignment_id = assignment_id;
+        this.user_id = user_id;
+        this.user_name = user_name;
+        this.submit_text = submit_text;
+        this.fileUrl = fileUrl;
+        this.submmitted_at = submmitted_at;
+        this.grade = grade;
+        this.feedback = feedback;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -97,6 +118,12 @@ public class Submission {
     public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
+
+    @Override
+    public String toString() {
+        return "Submission{" + "id=" + id + ", assignment_id=" + assignment_id + ", user_id=" + user_id + ", submit_text=" + submit_text + ", fileUrl=" + fileUrl + ", submmitted_at=" + submmitted_at + ", grade=" + grade + ", feedback=" + feedback + ", user_name=" + user_name + '}';
+    }
+    
     
     
 } 

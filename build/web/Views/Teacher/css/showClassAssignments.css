@@ -301,3 +301,409 @@ tr:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
 }
+
+/* Submission Styles */
+.submissions-info {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #dadce0;
+}
+
+.submissions-info h2 {
+    color: #3c4043;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.submission-count {
+    color: #5f6368;
+    font-size: 14px;
+    margin: 0;
+}
+
+.submission-row:hover {
+    background-color: #f8f9fa;
+}
+
+.student-info {
+    font-weight: 500;
+    color: #1a73e8;
+}
+
+.submission-text {
+    max-width: 200px;
+}
+
+.text-preview {
+    line-height: 1.4;
+    color: #3c4043;
+}
+
+.file-column {
+    text-align: center;
+}
+
+.submit-time {
+    font-size: 13px;
+    color: #5f6368;
+}
+
+.grade-column {
+    text-align: center;
+}
+
+.grade {
+    background: #4caf50;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.ungraded {
+    background: #ff9800;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.feedback-column {
+    max-width: 150px;
+}
+
+.feedback-preview {
+    line-height: 1.4;
+    color: #5f6368;
+    font-size: 13px;
+}
+
+.action-column {
+    text-align: center;
+}
+
+.grade-btn {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.grade-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(33, 150, 243, 0.3);
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.no-data h3 {
+    font-size: 18px;
+    color: #3c4043;
+    margin-bottom: 8px;
+}
+
+.no-data p {
+    color: #5f6368;
+    margin: 0;
+}
+
+/* Accordion Styles */
+.submissions-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.accordion-item {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+    border: 1px solid #dadce0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-item:hover {
+    box-shadow: 0 4px 12px rgba(60, 64, 67, 0.2);
+    transform: translateY(-1px);
+}
+
+.accordion-header {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e8eaed;
+    transition: all 0.3s ease;
+}
+
+.accordion-header:hover {
+    background: #e8f0fe;
+}
+
+.header-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.student-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.name-label {
+    font-size: 12px;
+    color: #5f6368;
+    font-weight: 500;
+}
+
+.student-name strong {
+    color: #1a73e8;
+    font-size: 16px;
+}
+
+.submission-title {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.title-label {
+    font-size: 12px;
+    color: #5f6368;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.quick-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.file-status, .grade-status, .feedback-status {
+    display: flex;
+    align-items: center;
+}
+
+.file-link-small {
+    color: #1a73e8;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: rgba(26, 115, 232, 0.1);
+}
+
+.file-link-small:hover {
+    background: rgba(26, 115, 232, 0.2);
+}
+
+.no-file {
+    color: #999;
+    font-size: 12px;
+}
+
+.grade {
+    background: #4caf50;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.ungraded {
+    background: #ff9800;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.has-feedback {
+    background: #4caf50;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.no-feedback {
+    background: #ff9800;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.grade-btn-small {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.grade-btn-small:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(33, 150, 243, 0.3);
+}
+
+.accordion-toggle {
+    margin-left: 16px;
+}
+
+.toggle-icon {
+    font-size: 12px;
+    color: #5f6368;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: white;
+    opacity: 0;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 2000px;
+    opacity: 1;
+}
+
+.content-grid {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.detail-item label {
+    font-size: 12px;
+    color: #5f6368;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-item span {
+    color: #3c4043;
+    font-size: 14px;
+}
+
+.full-content {
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    border-radius: 8px;
+    padding: 16px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.feedback-content {
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    border-radius: 8px;
+    padding: 16px;
+    line-height: 1.6;
+}
+
+.no-feedback-text {
+    color: #999;
+    font-style: italic;
+}
+
+.detail-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e8eaed;
+}
+
+.grade-btn-full {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.grade-btn-full:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-actions {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-end;
+    }
+    
+    .quick-info {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
