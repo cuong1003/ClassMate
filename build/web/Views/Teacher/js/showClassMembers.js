@@ -12,7 +12,7 @@ function confirmDelete(studentName, userId, classCode) {
         // Tạo form để gửi POST request
         var form = document.createElement('form');
         form.method = 'POST';
-        form.action = contextPath + '/t/studentlist';
+        form.action = contextPath + '/t/danhsachlop';
         
         var userIdInput = document.createElement('input');
         userIdInput.type = 'hidden';

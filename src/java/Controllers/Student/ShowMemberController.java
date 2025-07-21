@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Teacher;
+
+package Controllers.Student;
 
 import DAL.ClassroomDAO;
 import Models.ClassroomMember;
@@ -17,11 +18,27 @@ import java.util.List;
 
 /**
  *
- * @author fakey
+ * @author dinhh
  */
-public class TeacherStudentList extends HttpServlet {
+public class ShowMemberController extends HttpServlet {
+   
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+   
 
-
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /** 
+     * Handles the HTTP <code>GET</code> method.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,29 +68,26 @@ public class TeacherStudentList extends HttpServlet {
         request.setAttribute("teacherName", teacherName);
         request.setAttribute("ccode", classCode);
         request.setAttribute("membersCount", members.size());
-        request.getRequestDispatcher("/Views/Teacher/showClassMembers.jsp").forward(request, response);
+        request.getRequestDispatcher("/Views/Student/showClassMembers.jsp").forward(request, response);
     }
 
+    /** 
+     * Handles the HTTP <code>POST</code> method.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String classCode = request.getParameter("ccode");
-        String userIdStr = request.getParameter("userId");
-        ClassroomDAO dao = new ClassroomDAO();
-        try {
-            int userId = Integer.parseInt(userIdStr);
-            dao.deleteStudent(userId, classCode); // Sửa lại gọi đúng method deleteStudent
-            // Chuyển hướng về trang danh sách thành viên lớp
-            response.sendRedirect(request.getContextPath() + "/t/danhsachlop?ccode=" + classCode);
-        } catch (NumberFormatException e) {
-            request.setAttribute("error", "ID người dùng không hợp lệ.");
-            doGet(request, response); // Tải lại trang với thông báo lỗi
-        } catch (Exception e) {
-            request.setAttribute("error", "Lỗi khi xóa học sinh: " + e.getMessage());
-            doGet(request, response); // Tải lại trang với thông báo lỗi
-        }
+    throws ServletException, IOException {
+        
     }
 
+    /** 
+     * Returns a short description of the servlet.
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
